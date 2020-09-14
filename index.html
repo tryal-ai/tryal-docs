@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Tryal.AI Develop API</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -288,7 +288,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;javascript--ESNext&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -296,12 +296,11 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-bba7199a.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="shell">Shell</a>
+              <a href="#" data-language-name="javascript">JavaScript</a>
+              <a href="#" data-language-name="javascript--ESNext">JavaScript (ESNext)</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -310,6 +309,20 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#signing-up-and-registering-as-a-developer" class="toc-h2 toc-link" data-title="Signing up and Registering as a Developer">Signing up and Registering as a Developer</a>
+                  </li>
+                  <li>
+                    <a href="#subscribing-and-billing" class="toc-h2 toc-link" data-title="Subscribing and Billing">Subscribing and Billing</a>
+                  </li>
+                  <li>
+                    <a href="#setting-up-an-application" class="toc-h2 toc-link" data-title="Setting up an Application">Setting up an Application</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -333,7 +346,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://app.tryal.ai/signup'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -341,40 +354,155 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Tryal.AI Developer API! We&#39;re glad you&#39;ve chosen to use Tryal.AI as
+your Question and Examinations as a Service provider (QEaaS). Tryal.AI&#39;s API lets
+you use our state-of-the-art AI system to generate Maths practice material, at both
+the question, and examination level.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<p>As Tryal.AI is a non-deterministic AI based generation system, results are not guaranteed
+nor predictable. To help alleviate this, we&#39;ll provide key information and useful advice
+on how to achieve the results you&#39;re looking for when making a request to one of our generation
+systems.</p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+  Tryal.AI is not strictly non-deterministic, but most of our generation services are non-deterministic 
+  by default.
+</aside>
+
+<p>All calls which consume your subscription&#39;s usage plan are clearly highlighted, with in-depth explanations
+provided on when, how, and what quantity we will bill.</p>
+<h1 id='getting-started'>Getting Started</h1><h2 id='signing-up-and-registering-as-a-developer'>Signing up and Registering as a Developer</h2>
+<p>Before we begin, you&#39;ll need to:</p>
+
+<ul>
+<li><p><a href="https://app.tryal.ai/signup">register</a> an account with our online platform.</p></li>
+<li><p>activate your developer account by going to <a href="https://app.tryal.ai/account">accounts</a>.</p></li>
+</ul>
+
+<aside class="notice">
+  If you already have an active user subscription, you cannot activate developer mode. Please
+  contact us if you have this issue.
+</aside>
+<h2 id='subscribing-and-billing'>Subscribing and Billing</h2>
+<ul>
+<li>Subscribe for the subscription tier that best suits your needs
+
+<ul>
+<li><strong>Basic</strong> - 160,000 Marks per Month, +0.07p per mark after that - <em>£49</em></li>
+<li><strong>Standard</strong> - 400,000 Marks per Month, +0.06p per mark after that - <em>£99</em></li>
+<li><strong>Advanced</strong> - 800,000 Marks per Month, +0.05p per mark after that - <em>£199</em></li>
+</ul></li>
+</ul>
+
+<p>All plans are monthly, and allow you to cancel at anytime. When generating material, your usage
+is typically equivalent to the number of marks you are generating. As standard GCSE papers 
+are between 80 and 100 marks, the basic tier includes between 1,600 to 2,000 papers per month.</p>
+
+<aside class="notice">
+  When generating individual questions a minimum billing fee of 5 marks applies, more details
+  are included on the /questions/create documentation section
+</aside>
+<h2 id='setting-up-an-application'>Setting up an Application</h2>
+<ul>
+<li>Create a new application on the <a href="https://app.tryal.ai/develop">Develop</a> page and give
+it an appropriate name</li>
+<li>Make a note of your application ID. We&#39;ll refer to this as <code>&lt;tryal-app-id&gt;</code> throughout, where
+you need to use it.</li>
+<li>Generate a new application token and save it <a href="https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa"><strong>somewhere secure</strong></a>, we&#39;ll refer to this
+as <code>&lt;tryal-app-token</code>.</li>
+</ul>
+
+<aside class="warning">
+  This token is a secret, and can only be generated once.
+</aside>
+
+<p>Your application ID and Application token serve as a way to identify your application with our
+server without the need for you to use your password. </p>
+
+<p>For your security, application ID and tokens are scoped. This means that all 
+data you can access regarding usage, existing material etc. are only for that application, 
+and not for the developer account as a whole. </p>
+
+<p>You can still access your overall usage through our <a href="https://app.tryal.ai/usage">usage dashboard</a>.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authenticate your requests, you place your Application ID (<code>tryal-app-id</code>) and Token (<code>tryal-app-token</code>) 
+in your request headers:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://api.tryal.ai/&lt;endpoint&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"tryal-application-id: &lt;tryal-app-id&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"tryal-application-token: &lt;tryal-app-token&gt;"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/&lt;endpoint&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">tryal-application-id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-id&gt;</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">tryal-application-token</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-token&gt;</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// unpack the response JSON</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// do what you want with the response body</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getData</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">method</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">tryal-application-id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-id&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// Your App ID goes here</span>
+        <span class="dl">'</span><span class="s1">tryal-application-token</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-token&gt;</span><span class="dl">'</span> <span class="c1">// Your App Token goes here</span>
+      <span class="p">},</span>
+      <span class="nx">body</span> <span class="c1">//The body of the request</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Our API works with any language that supports HTTP calls where you can specify headers.</p>
+</blockquote>
+
+<p>Tryal.AI uses your Application ID (<code>tryal-app-id</code>) and Application Token (<code>tryal-app-token</code>) to authenticate
+all requests. All requests to our developer API must be authenticated, regardless of whether they hold
+secure information or are billable.</p>
+
+<p>Tryal.AI expects for the Application ID and Application Token to be included in all API requests to the server 
+in headers as shown:</p>
+
+<p><code>tryal-application-id: &lt;tryal-app-id&gt;</code></p>
+
+<p><code>tryal-application-token: &lt;tryal-app-token&gt;</code></p>
+
+<aside class="notice">
+  All requests should be pointed to `https://api.tryal.ai/`, do not use `http` as our server will reject or
+  redirect requests to `https`
 </aside>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -581,10 +709,9 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="shell">Shell</a>
+                <a href="#" data-language-name="javascript">JavaScript</a>
+                <a href="#" data-language-name="javascript--ESNext">JavaScript (ESNext)</a>
           </div>
       </div>
     </div>
