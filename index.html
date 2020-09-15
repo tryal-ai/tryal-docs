@@ -279,8 +279,8 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+    <link href="stylesheets/screen-259998e2.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-68c56d0f.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-e9bde216.js"></script>
 
     <script>
@@ -328,18 +328,56 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#api-overview" class="toc-h1 toc-link" data-title="API Overview">API Overview</a>
+          </li>
+          <li>
+            <a href="#post-tryals-create" class="toc-h1 toc-link" data-title="POST /tryals/create"><span class="post">POST</span> /tryals/create</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#generate-a-new-tryal-material" class="toc-h2 toc-link" data-title="Generate a new Tryal Material">Generate a new Tryal Material</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#get-tryals" class="toc-h1 toc-link" data-title="GET /tryals"><span class="get">GET</span> /tryals</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-tryal-material" class="toc-h2 toc-link" data-title="Get All Tryal Material">Get All Tryal Material</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#get-tryals-meta" class="toc-h1 toc-link" data-title="GET /tryals/meta"><span class="get">GET</span> /tryals/meta</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-specific-tryal" class="toc-h2 toc-link" data-title="Get a Specific Tryal">Get a Specific Tryal</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#get-tryals-paper" class="toc-h1 toc-link" data-title="GET /tryals/paper"><span class="get">GET</span> /tryals/paper</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-specific-tryal-pdf-paper" class="toc-h2 toc-link" data-title="Get a specific Tryal PDF Paper">Get a specific Tryal PDF Paper</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#configuring-generation" class="toc-h1 toc-link" data-title="Configuring Generation">Configuring Generation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#an-example-of-bad-configuration" class="toc-h2 toc-link" data-title="An example of bad configuration">An example of bad configuration</a>
+                  </li>
+                  <li>
+                    <a href="#generation-errors" class="toc-h2 toc-link" data-title="Generation Errors">Generation Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#storage-and-retrieval" class="toc-h1 toc-link" data-title="Storage and Retrieval">Storage and Retrieval</a>
+          </li>
+          <li>
+            <a href="#licencing-and-usage" class="toc-h1 toc-link" data-title="Licencing and Usage">Licencing and Usage</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -444,7 +482,7 @@ curl <span class="s2">"https://api.tryal.ai/&lt;endpoint&gt;"</span>
     <span class="dl">'</span><span class="s1">tryal-application-id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-id&gt;</span><span class="dl">'</span><span class="p">,</span>
     <span class="dl">'</span><span class="s1">tryal-application-token</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-token&gt;</span><span class="dl">'</span>
   <span class="p">},</span>
-  <span class="na">body</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({})</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//handle failed response</span>
@@ -473,7 +511,7 @@ curl <span class="s2">"https://api.tryal.ai/&lt;endpoint&gt;"</span>
         <span class="dl">'</span><span class="s1">tryal-application-id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-id&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// Your App ID goes here</span>
         <span class="dl">'</span><span class="s1">tryal-application-token</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;tryal-app-token&gt;</span><span class="dl">'</span> <span class="c1">// Your App Token goes here</span>
       <span class="p">},</span>
-      <span class="nx">body</span> <span class="c1">//The body of the request</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="c1">//The body of the request</span>
     <span class="p">});</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
@@ -504,149 +542,1153 @@ in headers as shown:</p>
   All requests should be pointed to `https://api.tryal.ai/`, do not use `http` as our server will reject or
   redirect requests to `https`
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='api-overview'>API Overview</h1>
+<p>Our API breaks into three major sections</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li><code>/tryals</code> - Allows you to create, retrieve, recycle and remove PDF based examination and question
+materials.
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<ul>
+<li><a href="#get-tryals"><span class="get">get</span> /tryals</a> gets all tryals generated for this application </li>
+<li><a href="#get-tryals-meta"><span class="get">get</span> /tryals/meta</a> gets the metadata for a given Tryal ID </li>
+<li><a href="#post-tryals-create"><span class="post">post</span> /tryals/create</a> Generates a new Tryal.AI material according to your parameters</li>
+</ul></li>
+<li><code>/questions</code> - Allows you to see, sample and generate our question base, to embed questions in your
+site</li>
+<li><code>/usage</code> - Allows you access and monitor the usage of your application</li>
+<li><code>/version</code> - Allows you to see the current operating version of the server serving your requests</li>
+</ul>
+<h1 id='post-tryals-create'><span class="post">POST</span> /tryals/create</h1><h2 id='generate-a-new-tryal-material'>Generate a new Tryal Material</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
+curl <span class="s2">"https://api.tryal.ai/tryals/create"</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+  <span class="nt">-d</span> <span class="s1">'{}'</span>
+<span class="c">#See example JSON body below</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//See below for an example JSON body</span>
+<span class="p">};</span>
+
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/tryals/create</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="c1">//Authorisation headers omitted</span>
+  <span class="p">},</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// unpack the response JSON</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Creates output as shown below</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">generateTryal</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/tryals/create`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="c1">//Authorisation headers omitted</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="c1">//see below for an example request body</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Produces result shown</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>The JSON below shows an example body, with every configurable option</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"edexcel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"higher"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"severally"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"no_of_questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">//alternative</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">marks</span><span class="w">
+    </span><span class="nl">"is_calculator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="err">//Visual</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"cover"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"whitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"graphics"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"markstable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="err">//configuration</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"repeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"share"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tolerance"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="err">//topic</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"inclusive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"algebra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"fdp"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This method is used to generate a new Tryal.AI Material. Tryal.AI not only generates exam papers and mark schemes but any material you really desire. By default, Tryal material requires only two values <code>board</code> and <code>level</code>. Additional options and what they control are documented below.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.tryal.ai/tryals/create</code></p>
+<h3 id='request-body'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Valid Values</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>board</code></td>
+<td>string</td>
+<td>Yes</td>
+<td><code>[&#39;edexcel&#39;]</code></td>
+<td>The board for which questions should be targeted. Currently Edexcel is our only supported board</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>string</td>
+<td>Yes</td>
+<td><code>[&#39;foundation&#39;, &#39;higher&#39;]</code></td>
+<td>The level for which questions should be targeted</td>
+</tr>
+<tr>
+<td><code>keyword</code></td>
+<td>string</td>
+<td>No</td>
+<td>Any Alphanumeric</td>
+<td>The keyword used for entropy, and printed on the front of the paper. The same keyword with identical configuration should always produce the same result</td>
+</tr>
+<tr>
+<td><code>marks</code></td>
+<td>integer</td>
+<td>No</td>
+<td><code>10</code> to <code>200</code></td>
+<td>The number of marks the material should consist of. Note that the chance of generation failure increases as you reach both extremes. <strong>mutually exclusive with <code>no_of_questions</code>, use one or the other</strong></td>
+</tr>
+<tr>
+<td><code>no_of_questions</code> or <code>quantity</code></td>
+<td>integer</td>
+<td>No</td>
+<td><code>1</code> to <code>50</code></td>
+<td>The number of questions the material should consist of. Note that chance of generation failure increases as you reach both extremes. <strong>mutually exclusive with <code>marks</code>, use one or the other</strong></td>
+</tr>
+<tr>
+<td><code>is_calculator</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>~</td>
+<td>Indicates whether material should be targeted for calculator or non-calculator students</td>
+</tr>
+<tr>
+<td><code>cover</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>~</td>
+<td>indicates if a cover page should be placed on the front. Note, this does not remove copyright notices from footers. Please see <a href="#licencing-and-usage">Usage and Licensing</a>.</td>
+</tr>
+<tr>
+<td><code>whitespace</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>~</td>
+<td>indicates if whitespace should be included between questions. Questions that use graphical drawing space (such as graph paper) will not be affected by this option</td>
+</tr>
+<tr>
+<td><code>markstable</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>~</td>
+<td>indicates if a marks table should be included at the start. A marks table will be printed regardless of the cover if this is on. This is useful when producing papers where the number of questions means the marks table needs to be placed on a separate page (e.g. a lot of questions)</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>string</td>
+<td>No</td>
+<td>either <code>all</code> or <code>q1/q2</code> where <code>q1</code> and <code>q2</code> are digits</td>
+<td>A string indicating what position in a GCSE paper questions should be taken from.</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>[&#39;off&#39;, &#39;2mol&#39;, &#39;ssdd&#39;, &#39;all&#39;]</code></td>
+<td>Indicates whether a question structure can be repeated more than once. See below for more info.</td>
+</tr>
+<tr>
+<td><code>share</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>[&#39;default&#39;, &#39;even&#39;, &#39;off&#39;]</code></td>
+<td>Indicates how major topics should be shared across the material. See below for more info.</td>
+</tr>
+<tr>
+<td><code>tolerance</code></td>
+<td>integer</td>
+<td>No</td>
+<td>value between <code>2</code> and <code>9</code></td>
+<td>Indicates how much margin of error there is when splitting marks between topic share.</td>
+</tr>
+<tr>
+<td><code>inclusive</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>~</td>
+<td>Indicates whether to inclusively or exclusively filter topics excluded.</td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td>Array</td>
+<td>No</td>
+<td>see exclude for details</td>
+<td>Indicates which topics and subtopics should be excluded. See section on exclude below</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+  It's not possible for us to accurately validate your request server side before we attempt generation. Certain configurations of a generator call with always fail. For more info, see <a href="#configuring-generation">configuring generation</a>
+</aside>
+<h3 id='position'>Position</h3>
+<p>Position allows you to capture a specific difficulty, by saying e.g. <code>1/10</code> any question that would normally be between question <code>1</code> and question <code>10</code> on a GCSE paper. Note argument must satisfy <code>q1 &lt; q2</code> and the narrower the range chosen, the more likely generation will fail.  </p>
+
+<p>All questions are marked as lying between question number <code>1</code> to <code>30</code>. Of course, as most papers never run to question <code>30</code> but every paper has a question <code>1</code> there&#39;s a natural increase in availability as your range covers lower question numbers.</p>
+
+<p>Additionally, every question has a different question number for both <code>higher</code> and <code>foundation</code> (with the exception of questions that would only naturally appear on the <code>foundation</code> or <code>higher</code> spec)</p>
+<h3 id='repeat'>Repeat</h3>
+<p>Counter-intuitively, repeat does not mean repeating the same question, it means repeating the same structure with new values and possibly new contexts. Additionally the underlying calculations may vary slightly. Controlling this option appropriately is important for all papers</p>
+
+<aside class="notice">
+  A mock exam paper typically won't want to repeat the same question style more than once, but a worksheet covering solving algebra, may want to repeat the same question with different values several times
+</aside>
+
+<p>Tryal.AI also recognises Same Style, Different Deep Structure, <a href="https://ssddproblems.com/">a concept developed by Craig Barton</a>, and filters mock material for these as well. In essence, if a question has the same style, even if the underlying structure is different, we won&#39;t include it twice.</p>
+
+<p>Repeat offers four options</p>
+
+<ul>
+<li><em>off</em> - Do not repeat any question structure more than once, regardless of whether the structure underneath is different.</li>
+<li><em>2mol</em> - &quot;2 Marks or Less&quot;, questions may be repeated if they are questions consisting of 2 marks or less. This is useful when generating worksheets covering fundamentals e.g. &quot;write the prime factors of x&quot;. No repeat restrictions apply to any questions above 2 marks.</li>
+<li><em>ssdd</em> - &quot;Same Style, Different Deep Structure&quot;, questions which have the same surface but different deep structure may be repeated, however no same structure may be repeated more than once.</li>
+<li><em>all</em> - Any question may be repeated more than once. Note that this turns off all checks on repeating, and doesn&#39;t even ensure that if there are two options it at least uses both. This is literally chaos theory questioning.</li>
+</ul>
+<h3 id='share'>Share</h3>
+<p>Controls how major topics are shared across the material generated. To achieve a realistic mock experience, Tryal.AI follows standard syllabus breakdowns. These are</p>
+
+<table><thead>
+<tr>
+<th>Level</th>
+<th>Algebra</th>
+<th>Geometry</th>
+<th>Proportions</th>
+<th>Numbers</th>
+<th>Statistics</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>foundation</td>
+<td>20%</td>
+<td>15%</td>
+<td>25%</td>
+<td>25%</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>higher</td>
+<td>30%</td>
+<td>20%</td>
+<td>20%</td>
+<td>15%</td>
+<td>15%</td>
+</tr>
+</tbody></table>
+
+<p>Note, that Tryal.AI has a <code>tolerance</code> which defines our acceptable margin of error. By default this tolerance is set to <code>2</code> as in 2 marks over or under the required share for this topic. Where a question consists of multiple major topics, as is the case in some harder or wordier questions, we cut marks in half and equally proportion them to each major topic.</p>
+
+<p>When entire topics are excluded, share is maintained as if by ratio e.g. a foundation excluding Algebra would be in the ratio <code>15:25:25:15</code> for the remaining topics. </p>
+
+<aside class="notice">
+  Topic share will be ignored when using the `quantity` or `no_of_questions` parameter
+</aside>
+
+<p>Of course, when creating end of topic tests, or worksheets, you may want a more even distribution across topics, to get better coverage Tryal.AI provides options for how topic share works</p>
+
+<ul>
+<li><em>default</em> - Standard GCSE pattern as documented above</li>
+<li><em>even</em> - Even distribution across all topics that have been included</li>
+<li><em>off</em> - No restriction applied on how topics are shared, note that as our question base increases, the <code>off</code> option will tend towards behaving like <code>even</code></li>
+</ul>
+
+<p><code>tolerance</code> provides a way to control margin of error, tolerance can be set between <code>2</code> and <code>9</code>, tolerance lower than <code>2</code> has been shown to frequently fail generation.</p>
+<h3 id='exclude'>Exclude</h3>
+<blockquote>
+<p>This is correct at time of publication, use <code>/tryals/topics</code> to get an up to date list or see the Generator page on the Tryal.AI dashboard</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">algebra</span><span class="pi">:</span> 
+  <span class="pi">-</span> <span class="s">express</span>
+  <span class="pi">-</span> <span class="s">simplify</span>
+  <span class="pi">-</span> <span class="s">solve</span>
+  <span class="pi">-</span> <span class="s">expand</span>
+  <span class="pi">-</span> <span class="s">factorise</span>
+  <span class="pi">-</span> <span class="s">rearrange</span>
+  <span class="pi">-</span> <span class="s">formula</span>
+  <span class="pi">-</span> <span class="s">suvat</span>
+  <span class="pi">-</span> <span class="s">inequalities</span>
+  <span class="pi">-</span> <span class="s">lineequations</span>
+  <span class="pi">-</span> <span class="s">sketch</span>
+  <span class="pi">-</span> <span class="s">fractions</span>
+  <span class="pi">-</span> <span class="s">quadratics</span>
+  <span class="pi">-</span> <span class="s">functions</span>
+  <span class="pi">-</span> <span class="s">simultaneous</span>
+<span class="na">geometry</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">trigonometry</span>
+  <span class="pi">-</span> <span class="s">transformations</span>
+  <span class="pi">-</span> <span class="s">loci</span>
+  <span class="pi">-</span> <span class="s">area</span>
+  <span class="pi">-</span> <span class="s">measure</span>
+  <span class="pi">-</span> <span class="s">algebraic</span>
+  <span class="pi">-</span> <span class="s">sdt</span>
+  <span class="pi">-</span> <span class="s">units</span>
+  <span class="pi">-</span> <span class="s">circletheorems</span>
+  <span class="pi">-</span> <span class="s">vectors</span>
+  <span class="pi">-</span> <span class="s">anglerules</span>
+  <span class="pi">-</span> <span class="s">mechanics</span>
+<span class="na">numbers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">primes</span>
+  <span class="pi">-</span> <span class="s">sequences</span>
+  <span class="pi">-</span> <span class="s">money</span>
+  <span class="pi">-</span> <span class="s">general</span>
+  <span class="pi">-</span> <span class="s">indices</span>
+  <span class="pi">-</span> <span class="s">fdp</span>
+  <span class="pi">-</span> <span class="s">calculator</span>
+  <span class="pi">-</span> <span class="s">time</span>
+  <span class="pi">-</span> <span class="s">hcflcm</span>
+  <span class="pi">-</span> <span class="s">rounding</span>
+  <span class="pi">-</span> <span class="s">settheory</span>
+  <span class="pi">-</span> <span class="s">estimate</span>
+  <span class="pi">-</span> <span class="s">standardform</span>
+  <span class="pi">-</span> <span class="s">factors</span>
+  <span class="pi">-</span> <span class="s">proof</span>
+  <span class="pi">-</span> <span class="s">surds</span>
+<span class="na">proportions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">compound</span>
+  <span class="pi">-</span> <span class="s">fdp</span>
+  <span class="pi">-</span> <span class="s">ratio</span>
+  <span class="pi">-</span> <span class="s">conversion</span>
+  <span class="pi">-</span> <span class="s">food</span>
+  <span class="pi">-</span> <span class="s">scale</span>
+  <span class="pi">-</span> <span class="s">inverse</span>
+<span class="na">statistics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">data</span>
+  <span class="pi">-</span> <span class="s">combinatorics</span>
+  <span class="pi">-</span> <span class="s">probability</span>
+  <span class="pi">-</span> <span class="s">charts</span>
+  <span class="pi">-</span> <span class="s">averages</span> 
+</code></pre></div>
+<p>Arguably the most powerful feature of Tryal.AI is the ability to filter what questions appear on the material you generate. This allows an unparalleled level of control over the material Tryal.AI can produce. Information on currently available topics is retrievable via the <code>/tryals/topics</code> endpoint. This endpoint will return a listing of each topic as a key of the JSON object, and each subtopic as an array there in.</p>
+
+<p>With these topic and subtopics you can now indicate what topics you wish to exclude. To exclude an entire topic, simply include it in the array for exclude e.g.</p>
+
+<p><code>&quot;exclude&quot;: [&quot;algebra&quot;, &quot;numbers/primes&quot;]</code></p>
+
+<p>will exclude the entire algebra catalog of questions and will exclude the subtopic <code>primes</code> from the overall numbers syllabus. By default, we assume all topics should be included. You only ever need to tell Tryal.AI what you <strong>do not</strong> want.</p>
+
+<p>The <code>inclusive</code> option alters how Tryal.AI decides what topics to exclude. The two behaviours are described below</p>
+
+<ul>
+<li><code>inclusive: false</code> - Tryal.AI will exclude any question that contains at least one of the excluded topics or subtopics. E.g. in the scenario above a question marked as both <code>algebra</code> and <code>geometry</code> would be excluded as it contains some element of <code>algebra</code></li>
+<li><code>inclusive: true</code> - Tryal.AI will exclude only questions where all of its topics or subtopics have been excluded. E.g. in the above example, a question marked <code>algebra</code> and <code>geometry</code> would be included because <code>geometry</code> has not been exclude. </li>
+</ul>
+
+<p><code>inclusive</code> is designed to broaden question horizons when dealing with narrower definitions. For example, an end of topic test on <code>algebra</code> shouldn&#39;t necessarily be narrowly scoped to <code>algebra</code> instead it should <code>algebra</code> related material.</p>
+<h3 id='billing'>Billing</h3>
+<p>Tryal material generated on this endpoint is billed at the number of marks on the material. E.g. if you generate a 50 mark material, we will deduct 50 marks from your included amount and then bill into your overage once you exceed your included amount.</p>
+
+<p>If you generate based on <code>quantity</code> or <code>no_of_questions</code> we will bill based on the resulting marks included on that material. As a result, billing for <code>quantity</code> or <code>no_of_questions</code> can vary.</p>
+
+<p>A minimum billing amount applies. If the material generated is less than 5 marks, we will bill 5 marks only. This minimum billing does not apply if you generate material above 5 marks.</p>
+
+<aside class="success">
+  Tryal.AI does not bill for failed generation attempts
+</aside>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>200</strong>
+
+<ul>
+<li>A JSON object containing metadata regarding the Tryal material you&#39;ve just generated. This is not the PDF copy itself, using the data here you can retrieve the PDF Paper and Mark Scheme as a PDF binary</li>
+</ul></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>keyword</td>
+<td>The keyword used to provide entropy during generation</td>
+</tr>
+<tr>
+<td>id</td>
+<td>A SHA256 hash used to retrieve the PDFs for paper and mark scheme and the metadata. Also used to delete and recycle the material</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<ul>
+<li><strong>500</strong>
+
+<ul>
+<li><em>GENERATOR_CALL_FAILED</em> - The generator didn&#39;t respond to our API server, this may be indicative of a server
+update or maintenance period. If this problem persists, please contact support and we will investigate.</li>
+<li><em>GENERATOR_FAILED</em> - Generally indicates that material with the given parameters could not be generated. Typically indicative of a bad generation request, but may be due to failed generation. You will not be billed for any failed generation attempts.</li>
+</ul></li>
+<li><strong>400</strong>
+
+<ul>
+<li><em>INCORRECT_REQUEST_CONTENT</em> - Content provided was not in a valid format, or was incomplete. In 
+most cases, this means <em>type is incorrect</em> e.g. marks is a string, not a number, <em>something was missing</em>
+e.g. you asked for a specific material but didn&#39;t provide an ID, <em>something is invalid value</em>, you gave
+an argument which didn&#39;t conform to the required value.
+Note, not all of our server side validation does sense checking, if you send two values which are contradictory
+our server may not recognise this as an incorrect request. Validation is not a substitution for a well formed
+request. Provides <em>invalid</em> to show what data it thinks is invalid</li>
+<li><em>MISSING_REQUEST_CONTENT</em> - Content was specifically missing that was required. Generally speaking this means
+you&#39;ve missed a request parameter that is explicitly required.</li>
+</ul></li>
+<li><strong>401</strong>
+
+<ul>
+<li><em>MISSING_AUTHENTICATION_HEADERS</em> - The required authentication headers were not included in the
+request, we recommend checking for typos, or null values in your <code>tryal-app-id</code> and <code>tryal-app-token</code>
+variables</li>
+<li><em>INVALID_APPLICATION_TOKEN</em> - The application with the given id <code>tryal-app-id</code> does not correspond to
+the token provided, most likely, your ID is correct, however your token is incorrect</li>
+</ul></li>
+<li><strong>403</strong>
+
+<ul>
+<li><em>NO_SUBSCRIPTION</em> - The account associated with this application does not currently have an active
+subscription, or the billing is in arrears and access has been suspended.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>APPLICATION_NOT_FOUND</em> - An application with the given <code>tryal-app-id</code> could not be found in our
+currently listed active applications</li>
+</ul></li>
+</ul>
+<h1 id='get-tryals'><span class="get">GET</span> /tryals</h1><h2 id='get-all-tryal-material'>Get All Tryal Material</h2>
+<blockquote>
+<p>Allows you to retrieve records of previously generated Tryal.AI material</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
+curl <span class="s2">"https://api.tryal.ai/tryals"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/tryals</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="c1">//Authorisation headers omitted</span>
+  <span class="p">},</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">before</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
+    <span class="na">after</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-09-14T15:30:00.000Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">board</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqa</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">level</span><span class="p">:</span> <span class="dl">"</span><span class="s2">foundation</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// unpack the response JSON</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Creates output as shown below</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getTryals</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/tryals`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="c1">//Authorisation headers omitted</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+        <span class="na">before</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="c1">// must be before current data</span>
+        <span class="na">after</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-09-14T15:30:00.000Z</span><span class="dl">"</span><span class="p">,</span> <span class="c1">//must be after 14th Sept 2020 at 3:30PM UTC</span>
+        <span class="na">board</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqa</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// board must be AQA</span>
+        <span class="na">level</span><span class="p">:</span> <span class="dl">"</span><span class="s2">foundation</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// level must be foundation</span>
+      <span class="p">})</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Produces result shown</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"738ae716b7842dcc6b25a819c32ca2baad64f72f74ac42fedb74184d258bb647"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"severally"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-14T15:37:59.625Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"edexcel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"higher"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06eef2535f0787bb5353078abed4f8a63ad4738ba7fd389831d25e96626e4541"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"costar"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-14T15:38:09.722Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"edexcel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"higher"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="w">
   </span><span class="p">}</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">Tryals</span><span class="w"> </span><span class="err">omitted</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all previously generated Tryals. If you have not previously generated
+material for this <em>Application</em> this will return <code>[]</code>.</p>
+
+<aside class="notice">
+  A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
+  definitely retrievable. Please see our policy of storage and retrieval limits for material 
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET https://api.tryal.ai/tryals</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Default</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><code>before</code></td>
+<td>null</td>
+<td>Any ISODate</td>
+<td>If set to a date, will filter for all Tryals before a give date.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td><code>after</code></td>
+<td>null</td>
+<td>Any ISODate</td>
+<td>If set to a date, will filter for all Tryals after a given date.</td>
+</tr>
+<tr>
+<td><code>board</code></td>
+<td>null</td>
+<td>Any String</td>
+<td>If set, filters tryals by board</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>null</td>
+<td>Any String</td>
+<td>If set, filters tryals by level</td>
 </tr>
 </tbody></table>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>200</strong>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ul>
+<li>An array of Tryals generated using this application&#39;s identity. Includes basic information 
+regarding when, how many marks and the Tryal&#39;s ID as well as the keyword used for the material&#39;s
+entropy.</li>
+</ul></li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>identifies the tryal in question and generally is used for fetching metadata, PDF binaries, recycling and deleting</td>
+</tr>
+<tr>
+<td><code>keyword</code></td>
+<td>The keyword used for entropy in generating a Tryal. The keyword is provided for convenience and isn&#39;t necessarily a unique identifier</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td>The date this Tryal material was generated</td>
+</tr>
+<tr>
+<td><code>board</code></td>
+<td>The board for which this tryal is targeted</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>The level at which this tryal is targeted</td>
+</tr>
+<tr>
+<td><code>marks</code></td>
+<td>The number of marks this Tryal consists of</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<ul>
+<li><strong>400</strong>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<ul>
+<li><em>INCORRECT_REQUEST_CONTENT</em> - Content provided was not in a valid format, or was incomplete. In 
+most cases, this means <em>type is incorrect</em> e.g. marks is a string, not a number, <em>something was missing</em>
+e.g. you asked for a specific material but didn&#39;t provide an ID, <em>something is invalid value</em>, you gave
+an argument which didn&#39;t conform to the required value.
+Note, not all of our server side validation does sense checking, if you send two values which are contradictory
+our server may not recognise this as an incorrect request. Validation is not a substitution for a well formed
+request. Provides <em>invalid</em> to show what data it thinks is invalid</li>
+<li><em>MISSING_REQUEST_CONTENT</em> - Content was specifically missing that was required. Generally speaking this means
+you&#39;ve missed a request parameter that is explicitly required.</li>
+</ul></li>
+<li><strong>401</strong>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<ul>
+<li><em>MISSING_AUTHENTICATION_HEADERS</em> - The required authentication headers were not included in the
+request, we recommend checking for typos, or null values in your <code>tryal-app-id</code> and <code>tryal-app-token</code>
+variables</li>
+<li><em>INVALID_APPLICATION_TOKEN</em> - The application with the given id <code>tryal-app-id</code> does not correspond to
+the token provided, most likely, your ID is correct, however your token is incorrect</li>
+</ul></li>
+<li><strong>403</strong>
+
+<ul>
+<li><em>NO_SUBSCRIPTION</em> - The account associated with this application does not currently have an active
+subscription, or the billing is in arrears and access has been suspended.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>APPLICATION_NOT_FOUND</em> - An application with the given <code>tryal-app-id</code> could not be found in our
+currently listed active applications</li>
+</ul></li>
+</ul>
+<h1 id='get-tryals-meta'><span class="get">GET</span> /tryals/meta</h1><h2 id='get-a-specific-tryal'>Get a Specific Tryal</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
+curl <span class="s2">"https://api.tryal.ai/tryals/meta?id=&lt;id&gt;"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">738ae716b7842dcc6b25a819c32ca2baad64f72f74ac42fedb74184d258bb647</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/tryals/meta?id=</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">id</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="c1">//Authorisation headers omitted</span>
+  <span class="p">},</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({})</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// unpack the response JSON</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Creates output as shown below</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getTryalMetadata</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/tryals/meta?id=</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="c1">//Authorisation headers omitted</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({})</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Produces result shown</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="err">//Basic</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"severally"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"edexcel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"higher"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"no_of_questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_calculator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="err">//Visual</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"cover"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"whitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"graphics_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"markstable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="err">//configuration</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"repeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"share"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tolerance"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="err">//topic</span><span class="w"> </span><span class="err">info</span><span class="w">
+    </span><span class="nl">"inclusive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"algebra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"fdp"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint retrieves metadata for a specific Tryal. The metadata retrieved is more comprehensive than
+that provided by the <a href="#get-tryals"><span class="get">get</span> /tryals</a> endpoint. This is because we request
+the data from the generation system. </p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>As such, this response takes longer, and should not be requested for every Tryal, but only specific Tryals. This data is the same as the generation settings sent when requesting a newly generate tryal. We recommend storing generation
+settings and the ID of the generated material together, on your server to save retrieval.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.tryal.ai/tryals/meta?id=&lt;id&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Valid</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>id</td>
+<td>A SHA256 Hash</td>
+<td>The ID of the tryal you wish to request metadata for, IDs are returned when generating tryals and when using <a href="#get-tryals"><span class="get">get</span> /tryals</a> to retrieve previously generated tryals.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>200</strong>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>A JSON object containing metadata regarding the Tryal material. All this metadata is exposed during the generation call, either it is settings provided by you to Tryal.AI regarding the material you want generated or it is control values such as <code>ID</code> or <code>keyword</code> provided back once the material is generated</li>
+</ul></li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-X</span> DELETE
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>keyword</code></td>
+<td>The keyword used to provide entropy during generation</td>
+</tr>
+<tr>
+<td><code>board</code></td>
+<td>The board this Tryal material was targeted at</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>The level this Tryal material was targeted at</td>
+</tr>
+<tr>
+<td><code>marks</code></td>
+<td>The number of marks on this material. This is not necessarily equivalent to the billed marks, see minimum billing for more details. This value is 0, if <code>no_of_questions</code> is set.</td>
+</tr>
+<tr>
+<td><code>no_of_questions</code></td>
+<td>The number of questions present on this paper</td>
+</tr>
+<tr>
+<td><code>is_calculator</code></td>
+<td>Boolean indicating if this material is a calculator material</td>
+</tr>
+<tr>
+<td><code>cover</code></td>
+<td>Boolean indicating if this material has a cover</td>
+</tr>
+<tr>
+<td><code>whitespace</code></td>
+<td>Boolean indicating if the material has writing space (whitespace) included</td>
+</tr>
+<tr>
+<td><code>graphics_enabled</code></td>
+<td>Boolean indicating if graphics questions (e.g. ones containing rendered assets) are included in this material</td>
+</tr>
+<tr>
+<td><code>markstable</code></td>
+<td>Boolean indicating if the material includes a markstable, a markstable will be rendered, even if a cover page is excluded</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>A string with either the value <code>all</code> or <code>x/y</code> where <code>x</code> is the start question position and <code>y</code> is the end question position. For more information on how positions work, look at /generate</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>A string with one of <code>off</code>, <code>2mol</code>, <code>ssdd</code> or <code>2mol</code>, for more information on repeat question patterns, look at /generate.</td>
+</tr>
+<tr>
+<td><code>share</code></td>
+<td>A string with one of <code>default</code>, <code>even</code> or <code>off</code>, for more information on topic share patterns, look at /generate.</td>
+</tr>
+<tr>
+<td><code>tolerance</code></td>
+<td>A integer value indicating what level of tolerance for deviation from the topic share breakdown is acceptable, this is measured in marks e.g. <code>tolerance: 2</code> indicates 2 mark deviation</td>
+</tr>
+<tr>
+<td><code>inclusive</code></td>
+<td>A boolean indicating if topic exclusion follows an inclusive exclusion pattern e.g. if at least one subtopic for a question is not excluded, then that question will be considered for inclusion</td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td>A JSON object containing keys corresponding to major topics that have been excluded, or lists of subtopics that have been excluded. See below for more info on how we record exclusion.</td>
+</tr>
+</tbody></table>
+<h3 id='excluding-topics'>Excluding topics</h3><div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">exclude</span><span class="pi">:</span>
+  <span class="na">algebra</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">numbers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">fdp</span>
+    <span class="pi">-</span> <span class="s">primes</span>
+</code></pre></div>
+<p>When keeping a record of excluded topics, we produce a JSON as shown in the YAML on the right. Any major topic without a key is considered to be <em>included</em>. Any major topic which corresponds to a value <code>all</code> is considered to be totally excluded. Any topic that corresponds to an array of strings e.g. <code>numbers: [&#39;fdp&#39;, &#39;primes&#39;]</code> has only those subtopics excluded. </p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>This recording method was designed to be more human readable, only by saying what we didn&#39;t want included, rather than listing everything we want included. It can essentially be read verbatim &quot;exclude all subtopics from algebra&quot;, and &quot;exclude fdp and primes subtopic from numbers&quot;.</p>
+<h3 id='errors'>Errors</h3>
+<ul>
+<li><strong>500</strong>
+
+<ul>
+<li><em>GENERATOR_CALL_FAILED</em> - The generator didn&#39;t respond to our API server, this may be indicative of a server
+update or maintenance period. If this problem persists, please contact support and we will investigate.</li>
+</ul></li>
+<li><strong>400</strong>
+
+<ul>
+<li><em>INCORRECT_REQUEST_CONTENT</em> - Content provided was not in a valid format, or was incomplete. In 
+most cases, this means <em>type is incorrect</em> e.g. marks is a string, not a number, <em>something was missing</em>
+e.g. you asked for a specific material but didn&#39;t provide an ID, <em>something is invalid value</em>, you gave
+an argument which didn&#39;t conform to the required value.
+Note, not all of our server side validation does sense checking, if you send two values which are contradictory
+our server may not recognise this as an incorrect request. Validation is not a substitution for a well formed
+request. Provides <em>invalid</em> to show what data it thinks is invalid</li>
+<li><em>MISSING_REQUEST_CONTENT</em> - Content was specifically missing that was required. Generally speaking this means
+you&#39;ve missed a request parameter that is explicitly required.</li>
+</ul></li>
+<li><strong>401</strong>
+
+<ul>
+<li><em>MISSING_AUTHENTICATION_HEADERS</em> - The required authentication headers were not included in the
+request, we recommend checking for typos, or null values in your <code>tryal-app-id</code> and <code>tryal-app-token</code>
+variables</li>
+<li><em>INVALID_APPLICATION_TOKEN</em> - The application with the given id <code>tryal-app-id</code> does not correspond to
+the token provided, most likely, your ID is correct, however your token is incorrect</li>
+</ul></li>
+<li><strong>403</strong>
+
+<ul>
+<li><em>NO_SUBSCRIPTION</em> - The account associated with this application does not currently have an active
+subscription, or the billing is in arrears and access has been suspended.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>APPLICATION_NOT_FOUND</em> - An application with the given <code>tryal-app-id</code> could not be found in our
+currently listed active applications</li>
+<li><em>RETRIEVE_FAILED</em> - Generally indicates that the requested Tryal material, or associated metadata is no longer
+available, see our policies on Tryal material storage and retrieval and time limits.<br></li>
+</ul></li>
+</ul>
+<h1 id='get-tryals-paper'><span class="get">GET</span> /tryals/paper</h1><h2 id='get-a-specific-tryal-pdf-paper'>Get a specific Tryal PDF Paper</h2>
+<blockquote>
+<p>Allows you to retrieve the PDF question material generated</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
+curl <span class="s2">"https://api.tryal.ai/tryals/paper"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/tryals/paper</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="c1">//Authorisation headers omitted</span>
+  <span class="p">},</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Note that we use blob here, not json</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">blob</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">paper</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Can add this to an anchor tag's href to download it/open it in browser</span>
+        <span class="kd">var</span> <span class="nx">canAddToAHref</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">paper</span><span class="p">);</span>
+    <span class="p">}</span>
+        <span class="c1">// Can pipe the result on elsewhere e.g. to client</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">somewhereElse</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getTryals</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/tryals/paper`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="c1">//Authorisation headers omitted</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+                <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba</span><span class="dl">"</span><span class="p">,</span>
+            <span class="p">})</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//Produces result shown</span>
+      <span class="kd">const</span> <span class="nx">pdfBlob</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">blob</span><span class="p">();</span>
+            <span class="c1">// Can stick this in a href on the client</span>
+            <span class="kd">const</span> <span class="nx">href</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">pdfBlob</span><span class="p">);</span>
+
+            <span class="c1">//forward result on to client</span>
+            <span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">forwardInResponse</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns a blob, which we cannot show here</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+
+<p>This endpoint retrieves a PDF blob, which when downloaded or rendered in browser, is the Tryal.AI
+material we generated as a result of <a href="#post-tryals-create"><span class="post">post</span> /tryals/create</a>. It is retrieved using the <code>id</code> produced when calling <code>/create</code>. </p>
+
+<aside class="notice">
+  A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
+  definitely retrievable. Please see our policy on storage and retrieval limits for material 
+</aside>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.tryal.ai/tryals/paper</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td><code>id</code></td>
+<td>Yes</td>
+<td>SHA256</td>
+<td>The ID of the material for which to retrieve the PDF paper for</td>
 </tr>
 </tbody></table>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>200</strong>
+
+<ul>
+<li>A blob response containing a PDF copy of the Tryal.AI material generated and associated with this SHA</li>
+</ul></li>
+</ul>
+<h3 id='errors'>Errors</h3>
+<ul>
+<li><strong>500</strong>
+
+<ul>
+<li><em>GENERATOR_CALL_FAILED</em> - The generator didn&#39;t respond to our API server, this may be indicative of a server
+update or maintenance period. If this problem persists, please contact support and we will investigate.</li>
+</ul></li>
+<li><strong>400</strong>
+
+<ul>
+<li><em>INCORRECT_REQUEST_CONTENT</em> - Content provided was not in a valid format, or was incomplete. In 
+most cases, this means <em>type is incorrect</em> e.g. marks is a string, not a number, <em>something was missing</em>
+e.g. you asked for a specific material but didn&#39;t provide an ID, <em>something is invalid value</em>, you gave
+an argument which didn&#39;t conform to the required value.
+Note, not all of our server side validation does sense checking, if you send two values which are contradictory
+our server may not recognise this as an incorrect request. Validation is not a substitution for a well formed
+request. Provides <em>invalid</em> to show what data it thinks is invalid</li>
+<li><em>MISSING_REQUEST_CONTENT</em> - Content was specifically missing that was required. Generally speaking this means
+you&#39;ve missed a request parameter that is explicitly required.</li>
+</ul></li>
+<li><strong>401</strong>
+
+<ul>
+<li><em>MISSING_AUTHENTICATION_HEADERS</em> - The required authentication headers were not included in the
+request, we recommend checking for typos, or null values in your <code>tryal-app-id</code> and <code>tryal-app-token</code>
+variables</li>
+<li><em>INVALID_APPLICATION_TOKEN</em> - The application with the given id <code>tryal-app-id</code> does not correspond to
+the token provided, most likely, your ID is correct, however your token is incorrect</li>
+</ul></li>
+<li><strong>403</strong>
+
+<ul>
+<li><em>NO_SUBSCRIPTION</em> - The account associated with this application does not currently have an active
+subscription, or the billing is in arrears and access has been suspended.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>APPLICATION_NOT_FOUND</em> - An application with the given <code>tryal-app-id</code> could not be found in our
+currently listed active applications</li>
+<li><em>RETRIEVE_FAILED</em> - Generally indicates that the requested Tryal material, or associated metadata is no longer
+available, see our policies on Tryal material storage and retrieval and time limits.<br></li>
+</ul></li>
+</ul>
+<h1 id='configuring-generation'>Configuring Generation</h1>
+<p>Tryal.AI allows you a lot of control over how you generate material. We estimate that with the parameters currently available, there are 525 Sextillion combinations (525,000,000,000,000,000,000,000) of ways to configure our generator. </p>
+
+<p>In most cases these changes are inconsequential - 79 marks is after all, pretty much 80. There are certain configurations for which Tryal.AI will never work. Due however, to the vast number of ways to configure the generator, it&#39;s not necessarily possible for us to do this sense checking at runtime. </p>
+
+<p>Instead, Tryal.AI&#39;s internal mechanisms are designed to fail gracefully, when a given configuration results in a contradictory and impossible to satisfy request. However, being non-deterministic, it is also possible that Tryal.AI failed to generate material in this specific moment. Two identical requests made now are not both guaranteed to succeed.</p>
+
+<p>We try to minimise failure for reasons other than bad configuration input, but it&#39;s impossible to completely reduce the risk. Additionally, more complex configurations can lower the chance of Tryal.AI succeeding. This typically occurs during requests that narrow the number of questions we can choose from (such as when limiting by topics or subtopics). </p>
+<h2 id='an-example-of-bad-configuration'>An example of bad configuration</h2>
+<blockquote>
+<p>In this example we use YAML for ease of reading.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">quantity</span><span class="pi">:</span> <span class="m">50</span>
+<span class="na">repeat</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
+<span class="na">exclude</span><span class="pi">:</span> 
+  <span class="na">algebra</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">geometry</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">statistics</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">proportions</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">numbers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">primes</span>
+  <span class="pi">-</span> <span class="s">sequences</span>
+  <span class="pi">-</span> <span class="s">money</span>
+  <span class="pi">-</span> <span class="s">general</span>
+  <span class="pi">-</span> <span class="s">indices</span>
+  <span class="c1">#- fdp ## FDP is included</span>
+  <span class="pi">-</span> <span class="s">calculator</span>
+  <span class="pi">-</span> <span class="s">time</span>
+  <span class="pi">-</span> <span class="s">hcflcm</span>
+  <span class="pi">-</span> <span class="s">rounding</span>
+  <span class="pi">-</span> <span class="s">settheory</span>
+  <span class="pi">-</span> <span class="s">estimate</span>
+  <span class="pi">-</span> <span class="s">standardform</span>
+  <span class="pi">-</span> <span class="s">factors</span>
+  <span class="pi">-</span> <span class="s">proof</span>
+  <span class="pi">-</span> <span class="s">surds</span>
+</code></pre></div>
+<p>Take this scenario. I have elected to not allow Tryal.AI to repeat any question structure more than once (a rule designed to ensure that a GCSE mock paper has a diverse set of questions), but simultaneously told it that it can only use questions from <code>fdp</code> (Fractions, Decimals and Percentages). The odds are that Tryal.AI cannot produce 50 substantially different questions on just FDP, particularly as Tryal.AI takes into account the underlying methodology in the question when deciding if a question is the same (and thus <strong>should not</strong> be repeated).</p>
+
+<p>Now you might be saying, &quot;Well ignore the repeat rule and just do it&quot;. We could allow Tryal.AI to override rules it has been provided, and generate approximate material. However, this might be seen as disingenuous when the generator has been given an instruction and decided not to follow it. As we bill for material generated, we also felt not providing the material because we cannot do what you&#39;ve asked is preferable, as it doesn&#39;t incur a cost to you.</p>
+
+<p>We&#39;re working on ways to better explain what went wrong in generation, but due to the nature of artificial intelligence this isn&#39;t always necessarily possible. In fact, there&#39;s an entire area of research in the field of AI dedicated to understanding how to <a href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence">explain when and why an AI failed (or succeeded)</a></p>
+
+<p>This does mean however, that the burden of sensible error handling is passed on to Tryal.AI Develop users. In general we have a small family of errors which indicate that the generator has failed, detailed below. </p>
+
+<aside class="notice">
+  In general, if the same call fails more than 2 or 3 times, it's probably not going to succeed. Our generator makes approximately 12 tries before returning a failed result, meaning 3 failed calls, is over 36 failed generation attempts.
+</aside>
+<h2 id='generation-errors'>Generation Errors</h2>
+<ul>
+<li><strong>500</strong>
+
+<ul>
+<li><em>GENERATOR_CALL_FAILED</em> - We couldn&#39;t reach the generator and get it to process your request. This typically only happens during maintenance. Maintenance typically doesn&#39;t last long, but in exceptionally rare cases, it may result in a request being dropped.
+We recommend retrying this call after waiting a few seconds. If this response persists, you should contact support.</li>
+<li><em>GENERATOR_FAILED</em> - Indicates that generation has failed, this response can happen for both reasons mentioned above, the rare cases where it is possible to generate material, but in this specific instance Tryal.AI has failed. The more likely case of poor configuration.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>RETRIEVE_FAILED</em> - This is typically a data storage issue and not indicative of a configuration issue. It may be that the item your trying to retrieve is no longer being stored by our data storage. Please see storage and retrieval time limits for Tryal.AI material.</li>
+</ul></li>
+</ul>
+<h1 id='storage-and-retrieval'>Storage and Retrieval</h1>
+<p>When a Tryal.AI material is generated (e.g. using <a href="#post-tryals-create"><span class="post">post</span> /tryals/create</a>), it is not returned immediately on that call. Instead a record of that newly generated material is returned to allow you to retrieve the paper and mark scheme on separate future calls.</p>
+
+<p>As a result, it is possible to delay the retrieval of material to a later date. In some use cases, this is practical, for example provisioning a question paper and waiting to release the mark scheme until the student has made some attempt. </p>
+
+<p>Tryal.AI does have limits on how long material can be retrieved for.</p>
+
+<p><strong>Our general policy is that material will be available for 30 days after first generation, or until your subscription expires, whichever is sooner</strong></p>
+
+<p>After that, it may still be possible to retrieve material, however we provide no guarantees on the availability of that material. You should assume that any material older than 30 days is no longer available. </p>
+
+<aside class="notice">
+    Calling `/tryals/delete` will immediately make material unavailable and is irreversible.
+</aside>
+<h1 id='licencing-and-usage'>Licencing and Usage</h1>
+<p>Tryal.AI material is designed to be quick to produce and precise in its content. When using Tryal.AI&#39;s service, all material produced for you is owned by Tryal.AI. Material is provided to your service under licence, that remains in effect for as long you have a Developer subscription with Tryal.AI. </p>
+
+<p>If you choose to cancel your subscription with us, or your subscription is suspended due to violation of our terms of service, your rights to redistribute material produced by Tryal.AI for you (both via our online platform, or via our developer APIs) cease with immediate effect. </p>
+
+<p>Any material produced through our <code>/tryals</code> service must retain all copyright notices attached, as per our terms of service. Questions provided via our <code>/questions</code> service do not need to carry a copyright notice, but are subject to same licencing restrictions detailed above.</p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
