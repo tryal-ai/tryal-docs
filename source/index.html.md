@@ -29,6 +29,7 @@ includes:
   - questions/get
   - questions/sample
   - questions/generate
+  - usage/get
   - licencing
   - errors
 
