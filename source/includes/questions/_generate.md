@@ -46,7 +46,7 @@ const REQUEST_ERROR = {
   message: 'Our request to Tryal.AI failed'
 }
 
-async function deleteTryal() {
+async function generateQuestion() {
   try {
     const response = await fetch(`https://api.tryal.ai/questions/generate`, {
       method: 'post',

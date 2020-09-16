@@ -43,7 +43,7 @@ const REQUEST_ERROR = {
   message: 'Our request to Tryal.AI failed'
 }
 
-async function getTryals() {
+async function getUsage() {
   try {
     const response = await fetch(`https://api.tryal.ai/usage`, {
       method: 'get',
