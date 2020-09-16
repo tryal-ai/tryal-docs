@@ -1,22 +1,29 @@
 # Errors
 
+```json
+{
+    "status": 400,
+    "message": "Request body for this endpoint was missing content or had invalid content",
+    "errorCode": "INCORRECT_REQUEST_CONTENT",
+    "invalidArgs": [
+        "id"
+    ]
+}
+
+{
+    "status": 500,
+    "message": "Something went wrong on a Tryal.AI Server, if this issue persists please contact support",
+    "errorCode": "SERVER_SIDE_ERROR",
+    "supportCode": "018A"
+}
+```
+
+Errors are listed below each endpoint detailing why they typically occur. All errors Tryal.AI returns have a JSON body. To test if a call failed, you should check if a call returned 200. If not, you can still safely unpack a JSON body, as all failed calls respond with JSON.
+
+In general, most errors indicate only one possible problem, e.g. *NO_SUBSCRIPTION* is pretty self explanatory. In some cases, errors contain more detailed information. The errors on the left are some notable exceptions. Generally when validating request bodies and parameters, we try to indicate what arguments we think are invalid. 
+
+No programmer plans to write code that crashes or has bugs in, but it is possible, and even inevitable that some bugs do emerge. Tryal.AI is designed to fail gracefully when this happens. Any failure on our server is indicated with a `errorCode: "SERVER_SIDE_ERROR"`. A supportCode is attached, which should be used when reporting the issue, as well as information about what you were trying to do when making a call. 
+
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+    Issues can be reported via our online dashboard.
 </aside>
-
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.

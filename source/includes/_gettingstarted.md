@@ -26,7 +26,7 @@ are between 80 and 100 marks, the basic tier includes between 1,600 to 2,000 pap
 
 <aside class="notice">
   When generating individual questions a minimum billing fee of 5 marks applies, more details
-  are included on the /questions/create documentation section
+  are included on the <a href="#post-questions-create"><span class="post">post</span> /questions/create</a> documentation section
 </aside>
 
 ## Setting up an Application
@@ -36,10 +36,10 @@ are between 80 and 100 marks, the basic tier includes between 1,600 to 2,000 pap
 - Make a note of your application ID. We'll refer to this as `<tryal-app-id>` throughout, where
 you need to use it.
 - Generate a new application token and save it [**somewhere secure**](https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa), we'll refer to this
-as `<tryal-app-token`.
+as `<tryal-app-token>`.
 
 <aside class="warning">
-  This token is a secret, and can only be generated once.
+  This token is a secret, and can only be generated once. Sharing an application token allows someone to make API calls on your behalf that are billed to your account
 </aside>
 
 Your application ID and Application token serve as a way to identify your application with our

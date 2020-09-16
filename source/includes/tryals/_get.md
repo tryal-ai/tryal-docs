@@ -105,7 +105,7 @@ material for this *Application* this will return `[]`.
 
 <aside class="notice">
   A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
-  definitely retrievable. Please see our policy of storage and retrieval limits for material 
+  definitely retrievable. Please see our policy of <a href="#storage-and-retrieval">storage and retrieval</a> limits for material 
 </aside>
 
 ### HTTP Request

@@ -33,6 +33,10 @@ var promise = fetch('https://api.tryal.ai/<endpoint>', {
     res.json().then(responseBody) {
       // do what you want with the response body
     }
+    // unpack a blob when dealing with PDF
+    res.blob().then(pdfData) {
+
+    }
   }
 }).catch(function(err) {
   //Handle any errors
@@ -46,7 +50,7 @@ const REQUEST_ERROR = {
   message: 'Our request to Tryal.AI failed'
 }
 
-async function getData(endpoint, method, body) {
+async function doSomethingOnTryal(endpoint, method, body) {
   try {
     const response = await fetch(`https://api.tryal.ai/${endpoint}`, {
       method,
@@ -59,6 +63,8 @@ async function getData(endpoint, method, body) {
     });
     if (response.status == 200) {
       return await fetch.json();
+      //or
+      return await fetch.blob(); // for PDFs
     } else {
       throw REQUEST_ERROR
     }

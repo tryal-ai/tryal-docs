@@ -118,23 +118,23 @@ This method is used to generate a new Tryal.AI Material. Tryal.AI not only gener
 
 ### Request Body
 
-Argument | Type | Required | Valid Values | Description
--------- | ---- | -------- | ------------ | -----------
+Argument | Type | Required (default) | Valid Values | Description
+-------- | ---- | ------------------ | ------------ | -----------
 `board` | string | Yes | `['edexcel']` | The board for which questions should be targeted. Currently Edexcel is our only supported board
 `level` | string | Yes | `['foundation', 'higher']` | The level for which questions should be targeted
-`keyword` | string | No | Any Alphanumeric | The keyword used for entropy, and printed on the front of the paper. The same keyword with identical configuration should always produce the same result
-`marks` | integer | No | `10` to `200` | The number of marks the material should consist of. Note that the chance of generation failure increases as you reach both extremes. **mutually exclusive with `no_of_questions`, use one or the other**
-`no_of_questions` or `quantity` | integer | No | `1` to `50` | The number of questions the material should consist of. Note that chance of generation failure increases as you reach both extremes. **mutually exclusive with `marks`, use one or the other**
-`is_calculator` | boolean | No | ~ | Indicates whether material should be targeted for calculator or non-calculator students
-`cover` | boolean | No | ~ | indicates if a cover page should be placed on the front. Note, this does not remove copyright notices from footers. Please see [Usage and Licensing](#licencing-and-usage).
-`whitespace` | boolean | No | ~ | indicates if whitespace should be included between questions. Questions that use graphical drawing space (such as graph paper) will not be affected by this option
-`markstable` | boolean | No | ~ | indicates if a marks table should be included at the start. A marks table will be printed regardless of the cover if this is on. This is useful when producing papers where the number of questions means the marks table needs to be placed on a separate page (e.g. a lot of questions)
-`position` | string | No | either `all` or `q1/q2` where `q1` and `q2` are digits | A string indicating what position in a GCSE paper questions should be taken from.
-`repeat` | string | No | `['off', '2mol', 'ssdd', 'all']` | Indicates whether a question structure can be repeated more than once. See below for more info.
-`share` | string | No | `['default', 'even', 'off']` | Indicates how major topics should be shared across the material. See below for more info.
-`tolerance` | integer | No | value between `2` and `9` | Indicates how much margin of error there is when splitting marks between topic share.
-`inclusive` | boolean | No | ~ | Indicates whether to inclusively or exclusively filter topics excluded.
-`exclude` | Array | No | see exclude for details | Indicates which topics and subtopics should be excluded. See section on exclude below 
+`keyword` | string | No (none) | Any Alphanumeric | The keyword used for entropy, and printed on the front of the paper. The same keyword with identical configuration should always produce the same result
+`marks` | integer | No (80) | `10` to `200` | The number of marks the material should consist of. Note that the chance of generation failure increases as you reach both extremes. **mutually exclusive with `no_of_questions`, use one or the other**
+`no_of_questions` or `quantity` | integer | No (none) | `1` to `50` | The number of questions the material should consist of. Note that chance of generation failure increases as you reach both extremes. **mutually exclusive with `marks`, use one or the other**
+`is_calculator` | boolean | No (true) | ~ | Indicates whether material should be targeted for calculator or non-calculator students
+`cover` | boolean | No (true) | ~ | indicates if a cover page should be placed on the front. Note, this does not remove copyright notices from footers. Please see [Usage and Licensing](#licencing-and-usage).
+`whitespace` | boolean | No (true) | ~ | indicates if whitespace should be included between questions. Questions that use graphical drawing space (such as graph paper) will not be affected by this option
+`markstable` | boolean | No (true) | ~ | indicates if a marks table should be included at the start. A marks table will be printed regardless of the cover if this is on. This is useful when producing papers where the number of questions means the marks table needs to be placed on a separate page (e.g. a lot of questions)
+`position` | string | No ('all') | either `all` or `q1/q2` where `q1` and `q2` are digits | A string indicating what position in a GCSE paper questions should be taken from.
+`repeat` | string | No ('off') | `['off', '2mol', 'ssdd', 'all']` | Indicates whether a question structure can be repeated more than once. See below for more info.
+`share` | string | No ('default') | `['default', 'even', 'off']` | Indicates how major topics should be shared across the material. See below for more info.
+`tolerance` | integer | No (2) | value between `2` and `9` | Indicates how much margin of error there is when splitting marks between topic share.
+`inclusive` | boolean | No (false) | ~ | Indicates whether to inclusively or exclusively filter topics excluded.
+`exclude` | Array | No ([]) | see exclude for details | Indicates which topics and subtopics should be excluded. See section on exclude below 
 
 <aside class="warning">
   It's not possible for us to accurately validate your request server side before we attempt generation. Certain configurations of a generator call with always fail. For more info, see <a href="#configuring-generation">configuring generation</a>
@@ -192,7 +192,7 @@ Of course, when creating end of topic tests, or worksheets, you may want a more 
 
 ### Exclude
 
-> This is correct at time of publication, use `/tryals/topics` to get an up to date list or see the Generator page on the Tryal.AI dashboard
+> This is correct at time of publication, use [`/tryals/topics`](#get-tryals-topics) to get an up to date list or see the Generator page on the Tryal.AI dashboard
 
 ```yaml
 algebra: 
@@ -257,7 +257,7 @@ statistics:
   - averages 
 ```
 
-Arguably the most powerful feature of Tryal.AI is the ability to filter what questions appear on the material you generate. This allows an unparalleled level of control over the material Tryal.AI can produce. Information on currently available topics is retrievable via the `/tryals/topics` endpoint. This endpoint will return a listing of each topic as a key of the JSON object, and each subtopic as an array there in.
+Arguably the most powerful feature of Tryal.AI is the ability to filter what topics and subtopics appear on the material you generate. This allows an unparalleled level of control over the material Tryal.AI can produce. Information on currently available topics is retrievable via the [<span class="get">get</span> /tryals/topics](#get-tryals-topics) endpoint. This endpoint will return a listing of each topic as a key of the JSON object, and each subtopic as an array there in.
 
 With these topic and subtopics you can now indicate what topics you wish to exclude. To exclude an entire topic, simply include it in the array for exclude e.g.
 

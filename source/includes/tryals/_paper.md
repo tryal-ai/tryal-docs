@@ -48,7 +48,7 @@ const REQUEST_ERROR = {
   message: 'Our request to Tryal.AI failed'
 }
 
-async function getTryals() {
+async function getTryalPaper() {
   try {
     const response = await fetch(`https://api.tryal.ai/tryals/paper`, {
       method: 'get',
@@ -84,7 +84,7 @@ material we generated as a result of [<span class="post">post</span> /tryals/cre
 
 <aside class="notice">
   A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
-  definitely retrievable. Please see our policy on storage and retrieval limits for material 
+  definitely retrievable. Please see our policy of <a href="#storage-and-retrieval">storage and retrieval</a> limits for material 
 </aside>
 
 ### HTTP Request

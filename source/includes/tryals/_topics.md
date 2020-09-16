@@ -1,12 +1,12 @@
-# <span class="get">GET</span> /tryals/markscheme
+# <span class="get">GET</span> /tryals/topics
 
-## Get a specific Tryal PDF Mark Scheme
+## List all Topics currently available via Tryal's API
 
-> Allows you to retrieve the PDF mark scheme material generate
+> Allows you to retrieve a list of all topics and their subtopics
 
 ```shell
 #Authorisation headers omitted
-curl "https://api.tryal.ai/tryals/markscheme"
+curl "https://api.tryal.ai/tryals/topics"
 ```
 
 ```javascript
@@ -14,26 +14,21 @@ curl "https://api.tryal.ai/tryals/markscheme"
 var fetch = require('cross-fetch');
 
 // Promise based request
-var promise = fetch('https://api.tryal.ai/tryals/markscheme', {
+var promise = fetch('https://api.tryal.ai/tryals/topics', {
   method: 'get',
   headers: {
     'Content-Type': 'application/json'
     //Authorisation headers omitted
-  }, 
-  body: JSON.stringify({
-    id: "007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba",
-  })
+  }
 }).then(function(res) {
   if (res.status !== 200) {
     //handle failed response
   } else {
-    // Note that we use blob here, not json
-    res.blob().then(paper) {
-        // Can add this to an anchor tag's href to download it/open it in browser
-    	var canAddToAHref = window.URL.createObjectURL(paper);
+    // unpack the response JSON
+    res.json().then(responseBody) {
+      //Creates output as shown below
+      console.log(responseBody)
     }
-		// Can pipe the result on elsewhere e.g. to client
-		res.body.pipe(somewhereElse);
   }
 }).catch(function(err) {
   //Handle any errors
@@ -48,26 +43,18 @@ const REQUEST_ERROR = {
   message: 'Our request to Tryal.AI failed'
 }
 
-async function getTryalMarkscheme() {
+async function getTopics() {
   try {
-    const response = await fetch(`https://api.tryal.ai/tryals/markscheme`, {
+    const response = await fetch(`https://api.tryal.ai/tryals/topics`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json'
         //Authorisation headers omitted
       },
-      body: JSON.stringify({
-        id: "007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba",
-      })
     });
     if (response.status == 200) {
       //Produces result shown
-      const pdfBlob = await response.blob();
-			// Can stick this in a href on the client
-			const href = window.URL.createObjectURL(pdfBlob);
-
-			//forward result on to client
-			response.body.pipe(forwardInResponse);
+      console.log(await response.json());
     } else {
       throw REQUEST_ERROR
     }
@@ -77,32 +64,66 @@ async function getTryalMarkscheme() {
 }
 ```
 
-> The above command returns a blob, which we cannot show here
+> The above command returns JSON structured like this:
 
-This endpoint retrieves a PDF blob, which when downloaded or rendered in browser, is the Tryal.AI
-mark scheme that corresponds to the material we generated as a result of [<span class="post">post</span> /tryals/create](#post-tryals-create). It is retrieved using the `id` produced when calling `/create`. 
+```json
+[
+  {
+    "name": "algebra",
+    "subvalues": [
+      "express",
+      "simplify",
+      "solve",
+      "expand",
+      "factorise",
+      "rearrange",
+      "formula",
+      "suvat",
+      "inequalities",
+      "lineequations",
+      "sketch",
+      "fractions",
+      "quadratics",
+      "functions",
+      "simultaneous"
+    ]
+  },
+  // More topics omitted
+]
+```
+
+This endpoint retrieves all topics and subtopics available via our API. As our question modelling system grows, we will implement new subtopics, and increase your ability to filter topics according to what specification your focusing on. For example, `algebraic fractions` does not typically appear on foundation material, but this method has no way of filtering down to the the topics specific for that level.
+
+<aside class="success">
+  Tryal.AI will ignore any topic exclusion rule that doesn't apply for the given level, board and difficulty. 
+</aside>
 
 <aside class="notice">
-  A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
-  definitely retrievable. Please see our policy of <a href="#storage-and-retrieval">storage and retrieval</a> limits for material 
+  As we release new material every week, this endpoint should be actively polled. 
 </aside>
+
 ### HTTP Request
 
-`GET https://api.tryal.ai/tryals/markscheme`
+`GET https://api.tryal.ai/tryals/topics`
 
 ### Body Parameters
 
-Parameter | Required | Type | Description 
---------- | ------- | ----- | -----------
-`id` | Yes | SHA256 | The ID of the material for which to retrieve the PDF mark scheme for
+No parameters. Search and filter parameters may be introduce in the feature, as a non-breaking change.
 
 ### Billing
 
-There is no applicable fee for retrieving a mark scheme or a paper. Please note our [retrieval time limits](#storage-and-retrieval) though.
+There is no applicable fee for accessing this endpoint.
 
 ### Response
 - **200**
-  - A blob response containing a PDF copy of the mark scheme corresponding to the Tryal.AI material generated and associated with this ID
+  - An array of JSONs containing
+
+Key | Value
+--- | -----
+`name`  | The name of the overall topic, e.g. `numbers`, `algebra` etc.
+`subvalues` | An array of the support subtopics
+
+A single topic metadata response is shown on the right. The full request will contain all topics and all subtopics 
 
 ### Errors
 - **500**
@@ -131,5 +152,4 @@ There is no applicable fee for retrieving a mark scheme or a paper. Please note 
   - *APPLICATION_NOT_FOUND* - An application with the given `tryal-app-id` could not be found in our
     currently listed active applications
   - *RETRIEVE_FAILED* - Generally indicates that the requested Tryal material, or associated metadata is no longer
-    available, see our policies on Tryal material storage and retrieval and time limits.  
-
+    available, see our policies on Tryal material storage and retrieval and time limits. This generally shouldn't occur when polling `/tryals/topics`

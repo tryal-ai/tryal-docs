@@ -1,3 +1,4 @@
+# Tryal.AI Develop API
 # Introduction
 
 Welcome to the Tryal.AI Developer API! We're glad you've chosen to use Tryal.AI as
@@ -8,7 +9,7 @@ the question, and examination level.
 As Tryal.AI is a non-deterministic AI based generation system, results are not guaranteed
 nor predictable. To help alleviate this, we'll provide key information and useful advice
 on how to achieve the results you're looking for when making a request to one of our generation
-systems.
+systems. Learning more in [configuring generation](#configuring-generation)
 
 <aside class="notice">
   Tryal.AI is not strictly non-deterministic, but most of our generation services are non-deterministic 
@@ -16,4 +17,4 @@ systems.
 </aside>
 
 All calls which consume your subscription's usage plan are clearly highlighted, with in-depth explanations
-provided on when, how, and what quantity we will bill.
+provided on when, how, and what quantity we will bill. Our [usage](#get-usage) API allows you to monitor usage for your application, whilst [our dashboard](https://app.tryal.ai) allows you to monitor usage across all your applications.

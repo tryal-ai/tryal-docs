@@ -1,6 +1,6 @@
 # <span class="get">GET</span> /tryals/meta
 
-## Get a Specific Tryal
+## Get a Specific Tryal's Metadata
 
 ```shell
 #Authorisation headers omitted
@@ -19,8 +19,7 @@ var promise = fetch('https://api.tryal.ai/tryals/meta?id=' + id, {
   headers: {
     'Content-Type': 'application/json'
     //Authorisation headers omitted
-  }, 
-  body: JSON.stringify({})
+  }
 }).then(function(res) {
   if (res.status !== 200) {
     //handle failed response
@@ -51,8 +50,7 @@ async function getTryalMetadata(id) {
       headers: {
         'Content-Type': 'application/json'
         //Authorisation headers omitted
-      },
-      body: JSON.stringify({})
+      }
     });
     if (response.status == 200) {
       //Produces result shown
@@ -102,6 +100,11 @@ the data from the generation system.
 
 As such, this response takes longer, and should not be requested for every Tryal, but only specific Tryals. This data is the same as the generation settings sent when requesting a newly generate tryal. We recommend storing generation
 settings and the ID of the generated material together, on your server to save retrieval.
+
+<aside class="notice">
+  A record of a Tryal material in our database doesn't necessarily indicate that a Tryal is 
+  definitely retrievable. Please see our policy of <a href="#storage-and-retrieval">storage and retrieval</a> limits for material. This applies for metadata too.
+</aside>
 
 ### HTTP Request
 

@@ -8,6 +8,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://app.tryal.ai/signup'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/tryal-ai/tryal-docs/issues'>Report an issue with this documentation</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,6 +19,7 @@ includes:
   - tryals/tryals
   - tryals/create
   - tryals/get
+  - tryals/topics
   - tryals/meta
   - tryals/paper
   - tryals/markscheme
@@ -29,7 +31,9 @@ includes:
   - questions/get
   - questions/sample
   - questions/generate
+  - manage
   - usage/get
+  - version
   - licencing
   - errors
 
