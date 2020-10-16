@@ -30,7 +30,7 @@ includes:
   - questions/questions
   - questions/get
   - questions/sample
-  - questions/generate
+  - questions/create
   - manage
   - usage/get
   - version

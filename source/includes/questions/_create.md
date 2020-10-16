@@ -1,12 +1,12 @@
-# <span class="post">POST</span> /questions/generate
+# <span class="post">POST</span> /questions/create
 
-## Generate a Question from the given ID
+## Create a Question from the given ID
 
 > Allows you to generate a question from the chosen ID
 
 ```shell
 #Authorisation headers omitted
-curl "https://api.tryal.ai/questions/generate"
+curl "https://api.tryal.ai/questions/create"
 ```
 
 ```javascript
@@ -14,7 +14,7 @@ curl "https://api.tryal.ai/questions/generate"
 var fetch = require('cross-fetch');
 
 // Promise based request
-var promise = fetch('https://api.tryal.ai/questions/generate', {
+var promise = fetch('https://api.tryal.ai/questions/create', {
   method: 'post',
   headers: {
     'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const REQUEST_ERROR = {
 
 async function generateQuestion() {
   try {
-    const response = await fetch(`https://api.tryal.ai/questions/generate`, {
+    const response = await fetch(`https://api.tryal.ai/questions/create`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ Our generator allows you to produce a unique question for a given question `id` 
 
 ### HTTP Request
 
-`POST https://api.tryal.ai/questions/generate`
+`POST https://api.tryal.ai/questions/create`
 
 
 ### Body Parameters
