@@ -437,10 +437,10 @@
               </ul>
           </li>
           <li>
-            <a href="#post-questions-generate" class="toc-h1 toc-link" data-title="POST /questions/generate"><span class="post">POST</span> /questions/generate</a>
+            <a href="#post-questions-create" class="toc-h1 toc-link" data-title="POST /questions/create"><span class="post">POST</span> /questions/create</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#generate-a-question-from-the-given-id" class="toc-h2 toc-link" data-title="Generate a Question from the given ID">Generate a Question from the given ID</a>
+                    <a href="#create-a-question-from-the-given-id" class="toc-h2 toc-link" data-title="Create a Question from the given ID">Create a Question from the given ID</a>
                   </li>
               </ul>
           </li>
@@ -2867,17 +2867,17 @@ subscription, or the billing is in arrears and access has been suspended.</li>
 currently listed active applications</li>
 </ul></li>
 </ul>
-<h1 id='post-questions-generate'><span class="post">POST</span> /questions/generate</h1><h2 id='generate-a-question-from-the-given-id'>Generate a Question from the given ID</h2>
+<h1 id='post-questions-create'><span class="post">POST</span> /questions/create</h1><h2 id='create-a-question-from-the-given-id'>Create a Question from the given ID</h2>
 <blockquote>
 <p>Allows you to generate a question from the chosen ID</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
-curl <span class="s2">"https://api.tryal.ai/questions/generate"</span>
+curl <span class="s2">"https://api.tryal.ai/questions/create"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
 <span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// Promise based request</span>
-<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/questions/generate</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/questions/create</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
     <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
@@ -2908,7 +2908,7 @@ curl <span class="s2">"https://api.tryal.ai/questions/generate"</span>
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nx">generateQuestion</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/questions/generate`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/questions/create`</span><span class="p">,</span> <span class="p">{</span>
       <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
@@ -2959,7 +2959,7 @@ curl <span class="s2">"https://api.tryal.ai/questions/generate"</span>
 </span></code></pre></div>
 <p>Our generator allows you to produce a unique question for a given question <code>id</code> either using a keyword you choose, or by allowing us to supply one. This means you can control and reliably retrieve the same responses each time you interact with our API. </p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.tryal.ai/questions/generate</code></p>
+<p><code>POST https://api.tryal.ai/questions/create</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
