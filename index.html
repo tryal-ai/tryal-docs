@@ -445,6 +445,32 @@
               </ul>
           </li>
           <li>
+            <a href="#question-markup" class="toc-h1 toc-link" data-title="Question Markup">Question Markup</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#numeric-type" class="toc-h2 toc-link" data-title="Numeric Type">Numeric Type</a>
+                  </li>
+                  <li>
+                    <a href="#list-type" class="toc-h2 toc-link" data-title="List Type">List Type</a>
+                  </li>
+                  <li>
+                    <a href="#multichoice-type" class="toc-h2 toc-link" data-title="Multichoice Type">Multichoice Type</a>
+                  </li>
+                  <li>
+                    <a href="#image-type" class="toc-h2 toc-link" data-title="Image Type">Image Type</a>
+                  </li>
+                  <li>
+                    <a href="#text-type" class="toc-h2 toc-link" data-title="Text Type">Text Type</a>
+                  </li>
+                  <li>
+                    <a href="#table-type" class="toc-h2 toc-link" data-title="Table Type">Table Type</a>
+                  </li>
+                  <li>
+                    <a href="#graph-type" class="toc-h2 toc-link" data-title="Graph Type">Graph Type</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#manage-api" class="toc-h1 toc-link" data-title="Manage API">Manage API</a>
           </li>
           <li>
@@ -2553,6 +2579,10 @@ curl <span class="s2">"https://api.tryal.ai/questions"</span>
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"foundation"</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"foundation"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"suitability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"calculator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -2616,6 +2646,10 @@ curl <span class="s2">"https://api.tryal.ai/questions"</span>
 <tr>
 <td><code>level</code></td>
 <td>An array of levels for which we consider this material to be appropriate, typically if both &#39;foundation&#39; and &#39;higher&#39; are present this is indicative of it being harder for foundation and easier for higher</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>An object consisting of up to two keys <code>foundation</code> and <code>higher</code>. The numeric value in these keys represent the typical position this question would appear in a paper for that level. For example <code>higher: 5</code> indicates that this question would usually appear around question 5 in a higher paper</td>
 </tr>
 <tr>
 <td><code>marks</code></td>
@@ -2934,27 +2968,27 @@ curl <span class="s2">"https://api.tryal.ai/questions/create"</span>
 <p>The body below shows the result of this request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"somerandomword"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$6$ tins of soup have a total weight of 1950g</span><span class="se">\n\n</span><span class="s2">$4$ tins of soup and $3$ packets of soup have a total weight of 2170g</span><span class="se">\n\n</span><span class="s2">Work out the total weight of 7 tins of soup and 5 packets of soup</span><span class="se">\n\n\n\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method to find the weight of 1 tins of soup e.g. $1950 / 6$ (325)"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method to find weight of 3 packets of soup e.g. $2170 - 1300 = 870$"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method to find weight of 7 tins of soup and 5 packets of soup $7 </span><span class="se">\\</span><span class="s2">times 325$, $5 </span><span class="se">\\</span><span class="s2">time 290$"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Correct answer only 3725"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For correct answer only (-4, 8)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9b3b7b18cc71f1e86ce32511078646fbe98a6d9c828fa6b5b412d305c81a0ff8"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"The equation of a curve is $y = (x +4)^2 +8$"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Which of the following is the turning point of the curve?"</span><span class="p">,</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multichoice"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"(-4, 8)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"(4, 8)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"(4, -8)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"(-4, -8)"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erratic"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Our generator allows you to produce a unique question for a given question <code>id</code> either using a keyword you choose, or by allowing us to supply one. This means you can control and reliably retrieve the same responses each time you interact with our API. </p>
@@ -3000,20 +3034,24 @@ curl <span class="s2">"https://api.tryal.ai/questions/create"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>keyword</td>
-<td>The keyword used to provide entropy during generation, if a keyword is fixed, you&#39;ll receive this keyword in return</td>
+<td><code>seed</code></td>
+<td>The seed is used to provide entropy and provides a deterministic identifier for the question. When submitting answers the <code>seed</code> will need to be returned in order for a correct marking to take place</td>
 </tr>
 <tr>
-<td>question</td>
-<td>The text of the question, including line breaks and LaTeX math formatting</td>
+<td><code>question</code></td>
+<td>The text of the question, consists of an array of string and/or objects. Strings should be treated as regular text, whilst objects are typed and carry additional metadata about what is to be rendered. For a complete set of objects see Question Markup</td>
 </tr>
 <tr>
-<td>answer</td>
+<td><code>answer</code></td>
 <td>An array of JSON objects consist of answer text and mark pairs. Our mark scheme is designed to followed progressively, step by step awarding marks. In some cases, marks will return <code>0</code> for a line in the mark scheme, this typically indicates that the line is an additional information note</td>
 </tr>
 <tr>
-<td>marks</td>
+<td><code>marks</code></td>
 <td>Note that for longer questions, the marks in the answer may not add up to the marks included in the metadata. This is because the question may have multiple solutions for which we&#39;ve provided different methods and shown how they would be marked. the marks key in the main body indicates the actual marks value of the question</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>The ID of the question. This is the same as the <code>id</code> submitted, but is returned for convenience and completeness as in order to get a question answer marked, you will need to submit any and all working the student provides, the <code>id</code> and the <code>seed</code> for marking.</td>
 </tr>
 </tbody></table>
 <h3 id='errors'>Errors</h3>
@@ -3060,6 +3098,176 @@ subscription, or the billing is in arrears and access has been suspended.</li>
 currently listed active applications</li>
 </ul></li>
 </ul>
+<h1 id='question-markup'>Question Markup</h1>
+<p>With the release of a new Tryal.AI Question API, Questions are now returned in a different format. Where previously a question would return a single string which included LaTeX formatting such as <code>\hfill</code> and <code>\n</code>, the new Tryal.AI Question API returns an array of <code>string</code>s and <code>object</code>s, that are designed to provide you with the flexibility to render questions in a way you see fit.</p>
+
+<aside class="notice">
+  Note that LaTeX math strings are unaffected, so you will still need to detect and handle the dollar wrapped notation, or use Tryal UI to do this for you
+</aside>
+
+<p>To give an example take a look at the example body</p>
+<div class="highlight"><pre class="highlight javascript"><code><span class="p">[</span>
+    <span class="dl">'</span><span class="s1">(a) What is 2 + 3?</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">part</span><span class="p">:</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">Below are 4 numbers</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">list</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">values</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">5</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">8</span><span class="dl">'</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">(b) What number is the odd one in the series?</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">multichoice</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">part</span><span class="p">:</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">values</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">5</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">8</span><span class="dl">'</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">Here is the floorplan of a house</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">~~ This would be a binary data string which can be used in place of a URL ~~</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">(c) Describe one thing wrong with the floorplan</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">text</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">part</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">(d) If $y = 4x + 3$, complete the table below</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">table</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">part</span><span class="p">:</span> <span class="dl">'</span><span class="s1">d</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">rows</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">x</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">5</span><span class="dl">'</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">y</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span> <span class="p">}]</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">(e) Sketch the curve $y = x^2 + 3x + 2$</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">graph</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">part</span><span class="p">:</span> <span class="dl">'</span><span class="s1">e</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>The body to the right shows the complete set of possible markup types that may be part of the question body provided</p>
+<h2 id='numeric-type'>Numeric Type</h2>
+<p>The numeric type, despite its misleading name, indicates that an input box should be rendered for working. THis can include algebraic, numeric or other similar workings. This directly corresponds to the <code>Workings</code> type available as part of <a href="https://github.com/tryal-ai/tryal-ui#tryal-workings">Tryal UI</a></p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>part</code></td>
+<td>A string indicating what question part this field refers to. When workings are returned to Tryal AI for marking they should consist of the workings themselves, the question <code>id</code>, the question <code>seed</code> and if provided the <code>part</code>. If part is not provided then question probably does not consist of multiple parts, or workings can be considered to apply to all parts</td>
+</tr>
+</tbody></table>
+<h2 id='list-type'>List Type</h2>
+<p>The list type is designed to be a list of strings. The list type will never have input fields in it, and is provided as a way to indicate that a set of values should be treated as a list. It&#39;s designed to allow you to make intelligent rendering decisions about how you show multiple related values, rather than interpreting LaTeX markup that was previously used for this purpose</p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>values</code></td>
+<td>The values in the list that need to be rendered. Typically a list of strings</td>
+</tr>
+</tbody></table>
+<h2 id='multichoice-type'>Multichoice Type</h2>
+<p>The multichoice type is a markup indicating that a question answer is one of the provided choices. Tryal AI uses its core technology to generate &quot;smart&quot; wrong choices. These are choices that are the result of incorrect calculations, e.g. 2 - 3 would consist of both 1, -1 and 5 because one has a missing sign and 5 is the result of adding them.</p>
+
+<p>The multichoice type should be rendered as a set of buttons to pick a choice from. You can decide how you wish to render multiple choice questions you end. </p>
+
+<aside class="notice">
+  Multichoice values are not preshuffled, meaning that you will need to shuffle them yourself before render
+</aside>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>values</code></td>
+<td>The choice of possible values that the answer could be, typically not shuffled meaning that answer may be in same place each time without shuffling client side</td>
+</tr>
+<tr>
+<td><code>part</code></td>
+<td>The part of the question that this multichoice relates to. If not included, usually indicates that there are no other parts to the question</td>
+</tr>
+</tbody></table>
+<h2 id='image-type'>Image Type</h2>
+<p>The Image type is a markup indicating that some kind of graphic (typically a graph, chart, or image) should be rendered for this question. The image contains a <a href="http://w3docs.com/snippets/html/how-to-display-base64-images-in-html.html">binary string representing the image</a></p>
+
+<p>Eventually this will move to a CDN based delivery approach where we provide a URL to the image rather than a base64 encoded image. </p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>data</code></td>
+<td>The base64 encoded string representing the image, should be embeddable in a <code>img</code> tag</td>
+</tr>
+</tbody></table>
+<h2 id='text-type'>Text Type</h2>
+<p>The Text Type is a markup indicating that some kind of text input needs to be provided. This is typically for questions such as &quot;is there a positive or negative correlation?&quot;, where a response is expected in prose English.</p>
+
+<p>Tryal AI includes a number of mechanisms for marking written prose responses for questions that require them.</p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>part</code></td>
+<td>The part of the question for which this input relates. If this key is not present it means the input relates to the entire question or that the question consists of only a single part</td>
+</tr>
+</tbody></table>
+<h2 id='table-type'>Table Type</h2>
+<p>The table type is a markup indicating that a table needs to be rendered. This table may either be static (i.e. only containing strings) or may itself contain inputs such as numeric inputs. This is useful in situations where students are asked to &quot;complete the table&quot;.</p>
+
+<p>A table markup is provided as a set of rows, which are themselves an array representing individual values for each cell in that row.</p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>rows</code></td>
+<td>An array of arrays where each array represents a row, and each value within the array represents a cell in an adjacent column starting from the left to right</td>
+</tr>
+<tr>
+<td><code>part</code></td>
+<td>A value indicating the part to which the table belongs, if the table contains input markup</td>
+</tr>
+</tbody></table>
+<h2 id='graph-type'>Graph Type</h2>
+<p>The graph type is a markup indicating that a graph input needs to be rendered. This graph input should use the TryGraph element provided by Tryal UI. TryGraph was designed not only to allow drawing in browser, but to provide meaningful data for marking on Tryal.AIs API service</p>
+
+<table><thead>
+<tr>
+<th>keys</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>part</code></td>
+<td>The part to which any sketched or drawn answers relates. If a part is not included it indicates the answer relates to the whole question, or that the question does not consist of more than one part</td>
+</tr>
+</tbody></table>
 <h1 id='manage-api'>Manage API</h1>
 <p>Our Tryal.AI Manage API is provided as a way for you to see your billing and get information useful to yourself and your application. As we develop out our API further, we&#39;d love to hear what aspects you&#39;d like to be able to control of Tryal.AI remotely.</p>
 
