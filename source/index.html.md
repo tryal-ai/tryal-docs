@@ -31,6 +31,7 @@ includes:
   - questions/get
   - questions/sample
   - questions/create
+  - questions/markup
   - manage
   - usage/get
   - version

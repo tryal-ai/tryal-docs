@@ -75,27 +75,27 @@ async function generateQuestion() {
 
 ```json
 {
-  "keyword": "somerandomword",
-  "question": "$6$ tins of soup have a total weight of 1950g\n\n$4$ tins of soup and $3$ packets of soup have a total weight of 2170g\n\nWork out the total weight of 7 tins of soup and 5 packets of soup\n\n\n\n",
-  "answer": [
-    {
-      "marks": 1,
-      "text": "Method to find the weight of 1 tins of soup e.g. $1950 / 6$ (325)"
-    },
-    {
-      "marks": 1,
-      "text": "Method to find weight of 3 packets of soup e.g. $2170 - 1300 = 870$"
-    },
-    {
-      "marks": 1,
-      "text": "Method to find weight of 7 tins of soup and 5 packets of soup $7 \\times 325$, $5 \\time 290$"
-    },
-    {
-      "marks": 1,
-      "text": "Correct answer only 3725"
-    }
-  ],
-  "marks": 4
+    "answer": [
+        {
+            "marks": 2,
+            "text": "For correct answer only (-4, 8)"
+        }
+    ],
+    "id": "9b3b7b18cc71f1e86ce32511078646fbe98a6d9c828fa6b5b412d305c81a0ff8",
+    "question": [
+        "The equation of a curve is $y = (x +4)^2 +8$",
+        "Which of the following is the turning point of the curve?",
+        {
+            "type": "multichoice",
+            "values": [
+                "(-4, 8)",
+                "(4, 8)",
+                "(4, -8)",
+                "(-4, -8)"
+            ]
+        }
+    ],
+    "seed": "erratic"
 }
 ```
 
@@ -124,11 +124,11 @@ Generate is usually billed at 5 marks, or if the question you generate is 6 or m
 
 Key | Value
 --- | -----
-keyword | The keyword used to provide entropy during generation, if a keyword is fixed, you'll receive this keyword in return
-question | The text of the question, including line breaks and LaTeX math formatting
-answer | An array of JSON objects consist of answer text and mark pairs. Our mark scheme is designed to followed progressively, step by step awarding marks. In some cases, marks will return `0` for a line in the mark scheme, this typically indicates that the line is an additional information note
-marks | Note that for longer questions, the marks in the answer may not add up to the marks included in the metadata. This is because the question may have multiple solutions for which we've provided different methods and shown how they would be marked. the marks key in the main body indicates the actual marks value of the question
-
+`seed` | The seed is used to provide entropy and provides a deterministic identifier for the question. When submitting answers the `seed` will need to be returned in order for a correct marking to take place
+`question` | The text of the question, consists of an array of string and/or objects. Strings should be treated as regular text, whilst objects are typed and carry additional metadata about what is to be rendered. For a complete set of objects see Question Markup
+`answer` | An array of JSON objects consist of answer text and mark pairs. Our mark scheme is designed to followed progressively, step by step awarding marks. In some cases, marks will return `0` for a line in the mark scheme, this typically indicates that the line is an additional information note
+`marks` | Note that for longer questions, the marks in the answer may not add up to the marks included in the metadata. This is because the question may have multiple solutions for which we've provided different methods and shown how they would be marked. the marks key in the main body indicates the actual marks value of the question
+`id` | The ID of the question. This is the same as the `id` submitted, but is returned for convenience and completeness as in order to get a question answer marked, you will need to submit any and all working the student provides, the `id` and the `seed` for marking.
 
 ### Errors
 - **500**

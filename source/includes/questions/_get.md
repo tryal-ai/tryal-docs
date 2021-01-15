@@ -76,6 +76,10 @@ async function getQuestions() {
     "level": [
       "foundation"
     ],
+    "position": {
+      "foundation": 22,
+      "higher": 3
+    },
     "marks": 1,
     "suitability": {
       "calculator": false,
@@ -129,6 +133,7 @@ Key | Value
 `id`  | uniquely identifies this question, used for sampling and generation
 `board` | An array of boards for which we consider this question to be appropriate
 `level` | An array of levels for which we consider this material to be appropriate, typically if both 'foundation' and 'higher' are present this is indicative of it being harder for foundation and easier for higher
+`position` | An object consisting of up to two keys `foundation` and `higher`. The numeric value in these keys represent the typical position this question would appear in a paper for that level. For example `higher: 5` indicates that this question would usually appear around question 5 in a higher paper
 `marks` | The number of marks this question is marked out of
 `suitability` | boolean key value pairs indicating if a question is suitable for calculator or non-calculator
 `ao` | A record of the assessment objective this question most closely corresponds to. We catalog main, sub and where available, sub sub objectives to give a high level of precision over what is expected on this question. In some cases, the `sub_sub` value is arrayed to indicate that it corresponds to more than one sub-sub objective 
