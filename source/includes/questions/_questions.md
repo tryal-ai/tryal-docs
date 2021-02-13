@@ -10,4 +10,10 @@ Questions has a much simpler user flow and is designed to be built upon by provi
 
 2. Retrieve a sample of a question with a given `id`, note that the same call for the same question, will result in the same response. Sample questions are static and not meant to be served to end users. The [<span class="post">post</span> /questions/sample](#post-questions-sample) is rate limited and primarily intended for testing purposes and for occasional calls.
 
-3. 
+3. Use this `id` to generate a question using [<span class="post">POST</span> /questions/create](#post-questions-create) 
+
+**optional**
+
+4. With the returned data, use Tryal UI elements to render the relevant markup as documented here [Tryal Markup](#question-markup)
+
+5. Using the workings taken from Tryal UI, you can now create a request to the Tryal Marking API to get the working marked. 
