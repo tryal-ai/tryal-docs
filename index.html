@@ -445,30 +445,24 @@
               </ul>
           </li>
           <li>
-            <a href="#question-markup" class="toc-h1 toc-link" data-title="Question Markup">Question Markup</a>
+            <a href="#post-questions-mark-closed-beta" class="toc-h1 toc-link" data-title="POST /questions/mark (Closed Beta)"><span class="post">POST</span> /questions/mark (Closed Beta)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#numeric-type" class="toc-h2 toc-link" data-title="Numeric Type">Numeric Type</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
-                    <a href="#list-type" class="toc-h2 toc-link" data-title="List Type">List Type</a>
+                    <a href="#body-parameters" class="toc-h2 toc-link" data-title="Body Parameters">Body Parameters</a>
                   </li>
                   <li>
-                    <a href="#multichoice-type" class="toc-h2 toc-link" data-title="Multichoice Type">Multichoice Type</a>
+                    <a href="#billing" class="toc-h2 toc-link" data-title="Billing">Billing</a>
                   </li>
                   <li>
-                    <a href="#image-type" class="toc-h2 toc-link" data-title="Image Type">Image Type</a>
-                  </li>
-                  <li>
-                    <a href="#text-type" class="toc-h2 toc-link" data-title="Text Type">Text Type</a>
-                  </li>
-                  <li>
-                    <a href="#table-type" class="toc-h2 toc-link" data-title="Table Type">Table Type</a>
-                  </li>
-                  <li>
-                    <a href="#graph-type" class="toc-h2 toc-link" data-title="Graph Type">Graph Type</a>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#question-markup" class="toc-h1 toc-link" data-title="Question Markup">Question Markup</a>
           </li>
           <li>
             <a href="#manage-api" class="toc-h1 toc-link" data-title="Manage API">Manage API</a>
@@ -2509,7 +2503,14 @@ We recommend retrying this call after waiting a few seconds. If this response pe
 <ol>
 <li><p>Retrieve a list of questions from our database via <a href="#get-questions"><span class="get">get</span> /questions</a>, this data does not include a sample of the material. </p></li>
 <li><p>Retrieve a sample of a question with a given <code>id</code>, note that the same call for the same question, will result in the same response. Sample questions are static and not meant to be served to end users. The <a href="#post-questions-sample"><span class="post">post</span> /questions/sample</a> is rate limited and primarily intended for testing purposes and for occasional calls.</p></li>
-<li></li>
+<li><p>Use this <code>id</code> to generate a question using <a href="#post-questions-create"><span class="post">POST</span> /questions/create</a> </p></li>
+</ol>
+
+<p><strong>optional</strong></p>
+
+<ol>
+<li><p>With the returned data, use Tryal UI elements to render the relevant markup as documented here <a href="#question-markup">Tryal Markup</a></p></li>
+<li><p>Using the workings taken from Tryal UI, you can now create a request to the Tryal Marking API to get the working marked. </p></li>
 </ol>
 <h1 id='get-questions'><span class="get">GET</span> /questions</h1><h2 id='list-all-questions-available-via-tryal-ai-39-s-questions-api'>List all Questions available via Tryal.AI&#39;s Questions API</h2>
 <blockquote>
@@ -3098,15 +3099,161 @@ subscription, or the billing is in arrears and access has been suspended.</li>
 currently listed active applications</li>
 </ul></li>
 </ul>
-<h1 id='question-markup'>Question Markup</h1>
-<p>With the release of a new Tryal.AI Question API, Questions are now returned in a different format. Where previously a question would return a single string which included LaTeX formatting such as <code>\hfill</code> and <code>\n</code>, the new Tryal.AI Question API returns an array of <code>string</code>s and <code>object</code>s, that are designed to provide you with the flexibility to render questions in a way you see fit.</p>
+<h1 id='post-questions-mark-closed-beta'><span class="post">POST</span> /questions/mark (Closed Beta)</h1><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c">#Authorisation headers omitted</span>
+curl <span class="s2">"https://api.tryal.ai/questions/mark"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="kd">var</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">);</span>
 
-<aside class="notice">
-  Note that LaTeX math strings are unaffected, so you will still need to detect and handle the dollar wrapped notation, or use Tryal UI to do this for you
-</aside>
+<span class="c1">// Promise based request</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.tryal.ai/questions/mark</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="c1">//Authorisation headers omitted</span>
+  <span class="p">},</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">keyword</span><span class="p">:</span> <span class="dl">"</span><span class="s2">somerandomword</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">workings</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">2x+3=9</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">2x=6</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">x=3</span><span class="dl">"</span><span class="p">]</span>
+  <span class="p">})</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//handle failed response</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// print the result of the recycle request</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Handle any errors</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript--ESNext"><code><span class="c1">// We recommend cross-fetch to write easy HTTP requests</span>
+<span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">cross-fetch</span><span class="dl">'</span><span class="p">;</span>
 
-<p>To give an example take a look at the example body</p>
-<div class="highlight"><pre class="highlight javascript"><code><span class="p">[</span>
+<span class="kd">const</span> <span class="nx">REQUEST_ERROR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Our request to Tryal.AI failed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">generateQuestion</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.tryal.ai/questions/mark`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="c1">//Authorisation headers omitted</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+            <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">007d3281ec51592e6d2a9b1955d9061e610627a159e1a914702868ca7ef854ba</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">keyword</span><span class="p">:</span> <span class="dl">"</span><span class="s2">somerandomword</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">workings</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">2x+3=9</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">2x=6</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">x=2</span><span class="dl">"</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nx">REQUEST_ERROR</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do error handling</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>The body below shows the an example of the result of a marking request (not the same result)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For correct answer only (-5, -8)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="err">//number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">marks</span><span class="w"> </span><span class="err">awarded</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">feedback</span><span class="w">
+            </span><span class="nl">"max_marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">//max</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">available</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"marks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">//total</span><span class="w"> </span><span class="err">marks</span><span class="w"> </span><span class="err">awarded</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">feedback</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Using Tryal UI and Tryal Questions API, it&#39;s possible to not only generate questions, have them rendered for students and collect workings, but also to get those workings marked. This API endpoint allows you submit workings taken from Tryal UI for marking. Here is an example of the typical flow:</p>
+
+<ol>
+<li><p>You fetch question metadata using <a href="#get-questions"><span class="get">GET</span> /questions</a></p></li>
+<li><p>Using the metadata get the ID of the question you want to use, making sure that the &quot;markable&quot; property is <code>true</code> otherwise Tryal AI does not support marking it</p></li>
+<li><p>Use this <code>id</code> to generate a question using <a href="#post-questions-create"><span class="post">POST</span> /questions/create</a> </p></li>
+<li><p>With the returned data, use Tryal UI elements to render the relevant markup as documented here <a href="#question-markup">Tryal Markup</a></p></li>
+<li><p>Using the workings taken from Tryal UI, you can now create a request to the Tryal Marking API to get the working marked. </p></li>
+</ol>
+
+<p>Working for questions is typically submitted as an array of strings <code>workings: [&quot;2x+5=11&quot;, &quot;2x=6&quot;]</code>, however, if dealing with a multi-part question, as some questions are in Tryal Markup, you will need to submit workings as a JSON Object, with each key in the object being the part identifier (i.e. <code>a</code>, <code>b</code>, <code>c</code> etc) and an array of strings e.g. <code>workings: { a: [&quot;2x=4&quot;, &quot;x=2&quot;], b: [&quot;because 4 divided by 2 is 2&quot;] }</code></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.tryal.ai/questions/mark</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>The unique identifier of the question you wish to mark, this will be the same ID as the one used to generate the question and will be returned as part of the question body</td>
+</tr>
+<tr>
+<td><code>keyword</code></td>
+<td>The keyword identifier provided when the question was generated, if you did not supply a keyword when you generated the question, a keyword will still be part of the returned body for the generated question</td>
+</tr>
+<tr>
+<td><code>workings</code></td>
+<td>An array of strings taken from Tryal UI workings field, or for a multipart question, a JSON object where the keys are the name of each part (e.g. <code>a</code>, <code>b</code>, <code>c</code>) with values that are an array of strings from the fields for each respective part</td>
+</tr>
+</tbody></table>
+<h3 id='billing'>Billing</h3>
+<p>Billing is at standard rate for questions, i.e. if the question is below 5 marks, marking is billed at 5 marks, if the question is above 5 marks, then question is billed as the number of marks for the question</p>
+<h3 id='errors'>Errors</h3>
+<ul>
+<li><strong>500</strong>
+
+<ul>
+<li><em>GENERATOR_CALL_FAILED</em> - The generator didn&#39;t respond to our API server, this may be indicative of a server
+update or maintenance period. If this problem persists, please contact support and we will investigate.</li>
+<li><em>GENERATOR_FAILED</em> - Generally indicates that material with the given parameters could not be generated. Typically indicative of a bad generation request, but may be due to failed generation. You will not be billed for any failed generation attempts.</li>
+</ul></li>
+<li><strong>400</strong>
+
+<ul>
+<li><em>INCORRECT_REQUEST_CONTENT</em> - Content provided was not in a valid format, or was incomplete. In 
+most cases, this means <em>type is incorrect</em> e.g. marks is a string, not a number, <em>something was missing</em>
+e.g. you asked for a specific material but didn&#39;t provide an ID, <em>something is invalid value</em>, you gave
+an argument which didn&#39;t conform to the required value.
+Note, not all of our server side validation does sense checking, if you send two values which are contradictory
+our server may not recognise this as an incorrect request. Validation is not a substitution for a well formed
+request. Provides <em>invalid</em> to show what data it thinks is invalid</li>
+<li><em>MISSING_REQUEST_CONTENT</em> - Content was specifically missing that was required. Generally speaking this means
+you&#39;ve missed a request parameter that is explicitly required.</li>
+</ul></li>
+<li><strong>401</strong>
+
+<ul>
+<li><em>MISSING_AUTHENTICATION_HEADERS</em> - The required authentication headers were not included in the
+request, we recommend checking for typos, or null values in your <code>tryal-app-id</code> and <code>tryal-app-token</code>
+variables</li>
+<li><em>INVALID_APPLICATION_TOKEN</em> - The application with the given id <code>tryal-app-id</code> does not correspond to
+the token provided, most likely, your ID is correct, however your token is incorrect</li>
+</ul></li>
+<li><strong>403</strong>
+
+<ul>
+<li><em>NO_SUBSCRIPTION</em> - The account associated with this application does not currently have an active
+subscription, or the billing is in arrears and access has been suspended.</li>
+</ul></li>
+<li><strong>404</strong>
+
+<ul>
+<li><em>APPLICATION_NOT_FOUND</em> - An application with the given <code>tryal-app-id</code> could not be found in our
+currently listed active applications</li>
+</ul></li>
+</ul>
+<h1 id='question-markup'>Question Markup</h1><div class="highlight"><pre class="highlight javascript"><code><span class="p">[</span>
     <span class="dl">'</span><span class="s1">(a) What is 2 + 3?</span><span class="dl">'</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">numeric</span><span class="dl">'</span><span class="p">,</span>
@@ -3149,8 +3296,18 @@ currently listed active applications</li>
     <span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
+<p>With the release of a new Tryal.AI Question API, Questions are now returned in a different format. Where previously a question would return a single string which included LaTeX formatting such as <code>\hfill</code> and <code>\n</code>, the new Tryal.AI Question API returns an array of <code>string</code>s and <code>object</code>s, that are designed to provide you with the flexibility to render questions in a way you see fit.</p>
+
+<aside class="notice">
+  Note that LaTeX math strings are unaffected, so you will still need to detect and handle the dollar wrapped notation, or use Tryal UI to do this for you
+</aside>
+
+<p>To give an example take a look at the example body</p>
+
 <p>The body to the right shows the complete set of possible markup types that may be part of the question body provided</p>
-<h2 id='numeric-type'>Numeric Type</h2>
+
+<p><strong>Numeric Type</strong></p>
+
 <p>The numeric type, despite its misleading name, indicates that an input box should be rendered for working. THis can include algebraic, numeric or other similar workings. This directly corresponds to the <code>Workings</code> type available as part of <a href="https://github.com/tryal-ai/tryal-ui#tryal-workings">Tryal UI</a></p>
 
 <table><thead>
@@ -3164,7 +3321,9 @@ currently listed active applications</li>
 <td>A string indicating what question part this field refers to. When workings are returned to Tryal AI for marking they should consist of the workings themselves, the question <code>id</code>, the question <code>seed</code> and if provided the <code>part</code>. If part is not provided then question probably does not consist of multiple parts, or workings can be considered to apply to all parts</td>
 </tr>
 </tbody></table>
-<h2 id='list-type'>List Type</h2>
+
+<p><strong>List Type</strong></p>
+
 <p>The list type is designed to be a list of strings. The list type will never have input fields in it, and is provided as a way to indicate that a set of values should be treated as a list. It&#39;s designed to allow you to make intelligent rendering decisions about how you show multiple related values, rather than interpreting LaTeX markup that was previously used for this purpose</p>
 
 <table><thead>
@@ -3178,7 +3337,9 @@ currently listed active applications</li>
 <td>The values in the list that need to be rendered. Typically a list of strings</td>
 </tr>
 </tbody></table>
-<h2 id='multichoice-type'>Multichoice Type</h2>
+
+<p><strong>Multichoice Type</strong></p>
+
 <p>The multichoice type is a markup indicating that a question answer is one of the provided choices. Tryal AI uses its core technology to generate &quot;smart&quot; wrong choices. These are choices that are the result of incorrect calculations, e.g. 2 - 3 would consist of both 1, -1 and 5 because one has a missing sign and 5 is the result of adding them.</p>
 
 <p>The multichoice type should be rendered as a set of buttons to pick a choice from. You can decide how you wish to render multiple choice questions you end. </p>
@@ -3202,7 +3363,9 @@ currently listed active applications</li>
 <td>The part of the question that this multichoice relates to. If not included, usually indicates that there are no other parts to the question</td>
 </tr>
 </tbody></table>
-<h2 id='image-type'>Image Type</h2>
+
+<p><strong>Image Type</strong></p>
+
 <p>The Image type is a markup indicating that some kind of graphic (typically a graph, chart, or image) should be rendered for this question. The image contains a <a href="http://w3docs.com/snippets/html/how-to-display-base64-images-in-html.html">binary string representing the image</a></p>
 
 <p>Eventually this will move to a CDN based delivery approach where we provide a URL to the image rather than a base64 encoded image. </p>
@@ -3218,7 +3381,9 @@ currently listed active applications</li>
 <td>The base64 encoded string representing the image, should be embeddable in a <code>img</code> tag</td>
 </tr>
 </tbody></table>
-<h2 id='text-type'>Text Type</h2>
+
+<p><strong>Text Type</strong></p>
+
 <p>The Text Type is a markup indicating that some kind of text input needs to be provided. This is typically for questions such as &quot;is there a positive or negative correlation?&quot;, where a response is expected in prose English.</p>
 
 <p>Tryal AI includes a number of mechanisms for marking written prose responses for questions that require them.</p>
@@ -3234,8 +3399,9 @@ currently listed active applications</li>
 <td>The part of the question for which this input relates. If this key is not present it means the input relates to the entire question or that the question consists of only a single part</td>
 </tr>
 </tbody></table>
-<h2 id='table-type'>Table Type</h2>
-<p>The table type is a markup indicating that a table needs to be rendered. This table may either be static (i.e. only containing strings) or may itself contain inputs such as numeric inputs. This is useful in situations where students are asked to &quot;complete the table&quot;.</p>
+
+<p><strong>Table Type</strong>
+The table type is a markup indicating that a table needs to be rendered. This table may either be static (i.e. only containing strings) or may itself contain inputs such as numeric inputs. This is useful in situations where students are asked to &quot;complete the table&quot;.</p>
 
 <p>A table markup is provided as a set of rows, which are themselves an array representing individual values for each cell in that row.</p>
 
@@ -3254,8 +3420,9 @@ currently listed active applications</li>
 <td>A value indicating the part to which the table belongs, if the table contains input markup</td>
 </tr>
 </tbody></table>
-<h2 id='graph-type'>Graph Type</h2>
-<p>The graph type is a markup indicating that a graph input needs to be rendered. This graph input should use the TryGraph element provided by Tryal UI. TryGraph was designed not only to allow drawing in browser, but to provide meaningful data for marking on Tryal.AIs API service</p>
+
+<p><strong>Graph Type</strong>
+The graph type is a markup indicating that a graph input needs to be rendered. This graph input should use the TryGraph element provided by Tryal UI. TryGraph was designed not only to allow drawing in browser, but to provide meaningful data for marking on Tryal.AIs API service</p>
 
 <table><thead>
 <tr>
